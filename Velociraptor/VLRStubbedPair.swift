@@ -18,6 +18,7 @@ public class VLRStubbedPair {
   }
 }
 
+// MARK: - Request Match Methods
 extension VLRStubbedPair {
   func matchesRequest(incomingRequest: NSURLRequest) -> Bool {
     let result = MatchResult<NSURLRequest>.Success(Box(value: incomingRequest))
@@ -35,7 +36,7 @@ extension VLRStubbedPair {
     }
   }
 
-  func matchesURLWithRequest(incomingRequest: NSURLRequest) -> MatchResult<NSURLRequest> {
+  private func matchesURLWithRequest(incomingRequest: NSURLRequest) -> MatchResult<NSURLRequest> {
     if incomingRequest.URL == request.URL {
       return .Success(Box(value: incomingRequest))
     }
@@ -43,7 +44,7 @@ extension VLRStubbedPair {
     return .Failure("URL not match")
   }
 
-  func matchesHTTPMethodWithRequest(incomingRequest: NSURLRequest) -> MatchResult<NSURLRequest> {
+  private func matchesHTTPMethodWithRequest(incomingRequest: NSURLRequest) -> MatchResult<NSURLRequest> {
     if incomingRequest.HTTPMethod == request.HTTPMethod {
       return .Success(Box(value: incomingRequest))
     }
@@ -51,7 +52,7 @@ extension VLRStubbedPair {
     return .Failure("HTTP Method not match")
   }
 
-  func matchesHeaderFieldsWithRequest(incomingRequest: NSURLRequest) -> MatchResult<NSURLRequest> {
+  private func matchesHeaderFieldsWithRequest(incomingRequest: NSURLRequest) -> MatchResult<NSURLRequest> {
     if incomingRequest.allHTTPHeaderFields == nil && request.allHTTPHeaderFields == nil {
       return .Success(Box(value: incomingRequest))
     }
@@ -78,21 +79,11 @@ extension VLRStubbedPair {
     }
   }
 
-  func matchesHTTPBodyDataWithRequest(incomingRequest: NSURLRequest) -> MatchResult<NSURLRequest> {
+  private func matchesHTTPBodyDataWithRequest(incomingRequest: NSURLRequest) -> MatchResult<NSURLRequest> {
     if incomingRequest.HTTPBody == request.HTTPBody {
       return .Success(Box(value: incomingRequest))
     }
 
     return .Failure("HTTP body data not match")
   }
-
-}
-
-// MARK: - Equatable
-extension VLRStubbedPair: Equatable {
-  
-}
-
-public func ==(lhs: VLRStubbedPair, rhs: VLRStubbedPair) -> Bool {
-  return (lhs.request == rhs.request) && (lhs.response == rhs.response)
 }
