@@ -9,9 +9,11 @@
 import Foundation
 
 public class VelociraptorManager {
-  private var pairs: [NSURLRequest: VLRStubbedPair] = [:]
+  private var pairs: [VLRStubbedPair] = []
   
   public static let sharedManager = VelociraptorManager()
+  
+  public var enableDefaultResponse = true
   
 }
 
@@ -21,13 +23,19 @@ extension VelociraptorManager {
     if let request = URLRequest.URLRequest {
       
       let stubbedRequest = request.mutableCopy() as! NSMutableURLRequest
-      let stubbedResponse = NSHTTPURLResponse(URL: request.URL!,
-        statusCode: 200,
-        HTTPVersion: "HTTP/1.1",
-        headerFields: nil)!
-      let pair = VLRStubbedPair(request: stubbedRequest,
-        response: stubbedResponse)
-      pairs[request] = pair
+      stubbedRequest.allHTTPHeaderFields = [:]
+
+      var stubbedResponse: NSHTTPURLResponse? = nil
+
+      if enableDefaultResponse {
+        stubbedResponse = NSHTTPURLResponse(URL: request.URL!,
+            statusCode: 200,
+            HTTPVersion: "HTTP/1.1",
+            headerFields: [:])!
+      }
+
+      let pair = VLRStubbedPair(request: stubbedRequest, response: stubbedResponse)
+      pairs.append(pair)
       return pair
     }
     
@@ -38,11 +46,15 @@ extension VelociraptorManager {
     pairs.removeAll(keepCapacity: false)
   }
   
-  public func stubbedPairWithURLRequest(URLRequest: VLRURLRequestConvertible) -> VLRStubbedPair? {
+  public func stubbedResponseWithURLRequest(URLRequest: VLRURLRequestConvertible) -> NSHTTPURLResponse? {
     if let request = URLRequest.URLRequest {
-      return pairs[request]
-    } else {
-      return nil
+      for pair in pairs {
+        if pair.matchesRequest(request) {
+          return pair.response
+        }
+      }
     }
+
+    return nil
   }
 }

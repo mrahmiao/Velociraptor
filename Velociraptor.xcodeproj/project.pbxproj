@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F1699711AE646DF003CE06C /* URLStubProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F1699701AE646DF003CE06C /* URLStubProtocol.swift */; };
+		4F1699741AE6560F003CE06C /* URLStubProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F1699701AE646DF003CE06C /* URLStubProtocol.swift */; };
+		4F23A7CB1AE7488200188691 /* MatchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F23A7CA1AE7488200188691 /* MatchResult.swift */; };
+		4F23A7CC1AE7488200188691 /* MatchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F23A7CA1AE7488200188691 /* MatchResult.swift */; };
 		4FA9BB0F1AE5354700C94243 /* Velociraptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 4FA9BB0E1AE5354700C94243 /* Velociraptor.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4FA9BB151AE5354700C94243 /* Velociraptor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FA9BB091AE5354700C94243 /* Velociraptor.framework */; };
 		4FA9BB271AE5DB1300C94243 /* VelociraptorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA9BB261AE5DB1300C94243 /* VelociraptorManager.swift */; };
@@ -15,7 +19,6 @@
 		4FA9BB2C1AE5E45200C94243 /* VLRURLRequestConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA9BB2A1AE5E45200C94243 /* VLRURLRequestConvertible.swift */; };
 		4FA9BB2E1AE5EA5600C94243 /* VLRStubbedPair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA9BB2D1AE5EA5600C94243 /* VLRStubbedPair.swift */; };
 		4FA9BB2F1AE5EA5600C94243 /* VLRStubbedPair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA9BB2D1AE5EA5600C94243 /* VLRStubbedPair.swift */; };
-		4FA9BB341AE6192000C94243 /* VelociraptorManagerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA9BB331AE6192000C94243 /* VelociraptorManagerSpec.swift */; };
 		6E5ED77E6AC6CC49DDD1D8E9 /* Pods_VelociraptorTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08AE5C9902B6EE80633E6F45 /* Pods_VelociraptorTests.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -32,6 +35,8 @@
 /* Begin PBXFileReference section */
 		08AE5C9902B6EE80633E6F45 /* Pods_VelociraptorTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VelociraptorTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		175986F35233623F892DF9A8 /* Pods-VelociraptorTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VelociraptorTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VelociraptorTests/Pods-VelociraptorTests.debug.xcconfig"; sourceTree = "<group>"; };
+		4F1699701AE646DF003CE06C /* URLStubProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = URLStubProtocol.swift; path = URLProtocols/URLStubProtocol.swift; sourceTree = "<group>"; };
+		4F23A7CA1AE7488200188691 /* MatchResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchResult.swift; sourceTree = "<group>"; };
 		4FA9BB091AE5354700C94243 /* Velociraptor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Velociraptor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FA9BB0D1AE5354700C94243 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4FA9BB0E1AE5354700C94243 /* Velociraptor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Velociraptor.h; sourceTree = "<group>"; };
@@ -40,7 +45,6 @@
 		4FA9BB261AE5DB1300C94243 /* VelociraptorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VelociraptorManager.swift; sourceTree = "<group>"; };
 		4FA9BB2A1AE5E45200C94243 /* VLRURLRequestConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VLRURLRequestConvertible.swift; path = Protocols/VLRURLRequestConvertible.swift; sourceTree = "<group>"; };
 		4FA9BB2D1AE5EA5600C94243 /* VLRStubbedPair.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VLRStubbedPair.swift; sourceTree = "<group>"; };
-		4FA9BB331AE6192000C94243 /* VelociraptorManagerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VelociraptorManagerSpec.swift; sourceTree = "<group>"; };
 		E72D2DD04ADBDCB00064625A /* Pods-VelociraptorTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VelociraptorTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-VelociraptorTests/Pods-VelociraptorTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -72,6 +76,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		4F16996F1AE64638003CE06C /* URLProtocols */ = {
+			isa = PBXGroup;
+			children = (
+				4F1699701AE646DF003CE06C /* URLStubProtocol.swift */,
+			);
+			name = URLProtocols;
+			sourceTree = "<group>";
+		};
 		4FA9BAFF1AE5354700C94243 = {
 			isa = PBXGroup;
 			children = (
@@ -95,11 +107,13 @@
 		4FA9BB0B1AE5354700C94243 /* Velociraptor */ = {
 			isa = PBXGroup;
 			children = (
+				4F16996F1AE64638003CE06C /* URLProtocols */,
 				4FA9BB291AE5E40700C94243 /* Protocols */,
 				4FA9BB0E1AE5354700C94243 /* Velociraptor.h */,
 				4FA9BB0C1AE5354700C94243 /* Supporting Files */,
 				4FA9BB261AE5DB1300C94243 /* VelociraptorManager.swift */,
 				4FA9BB2D1AE5EA5600C94243 /* VLRStubbedPair.swift */,
+				4F23A7CA1AE7488200188691 /* MatchResult.swift */,
 			);
 			path = Velociraptor;
 			sourceTree = "<group>";
@@ -116,7 +130,6 @@
 			isa = PBXGroup;
 			children = (
 				4FA9BB191AE5354700C94243 /* Supporting Files */,
-				4FA9BB331AE6192000C94243 /* VelociraptorManagerSpec.swift */,
 			);
 			path = VelociraptorTests;
 			sourceTree = "<group>";
@@ -304,9 +317,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F1699711AE646DF003CE06C /* URLStubProtocol.swift in Sources */,
 				4FA9BB2E1AE5EA5600C94243 /* VLRStubbedPair.swift in Sources */,
 				4FA9BB2B1AE5E45200C94243 /* VLRURLRequestConvertible.swift in Sources */,
 				4FA9BB271AE5DB1300C94243 /* VelociraptorManager.swift in Sources */,
+				4F23A7CB1AE7488200188691 /* MatchResult.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -314,9 +329,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F1699741AE6560F003CE06C /* URLStubProtocol.swift in Sources */,
 				4FA9BB2C1AE5E45200C94243 /* VLRURLRequestConvertible.swift in Sources */,
 				4FA9BB2F1AE5EA5600C94243 /* VLRStubbedPair.swift in Sources */,
-				4FA9BB341AE6192000C94243 /* VelociraptorManagerSpec.swift in Sources */,
+				4F23A7CC1AE7488200188691 /* MatchResult.swift in Sources */,
 				4FA9BB281AE5DB1300C94243 /* VelociraptorManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
