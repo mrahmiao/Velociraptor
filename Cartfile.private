@@ -1,0 +1,3 @@
+# Quick Test Framework
+github "Quick/Quick"
+github "Quick/Nimble"
