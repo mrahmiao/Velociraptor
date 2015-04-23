@@ -1,4 +1,4 @@
-//
+//\
 //  VelociraptorManager.swift
 //  Velociraptor
 //
@@ -12,9 +12,6 @@ public class VelociraptorManager {
   private var pairs: [VLRStubbedPair] = []
   
   public static let sharedManager = VelociraptorManager()
-  
-  public var enableDefaultResponse = true
-  
 }
 
 // MARK: - Public APIs
