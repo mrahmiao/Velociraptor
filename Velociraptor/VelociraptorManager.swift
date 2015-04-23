@@ -21,25 +21,19 @@ public class VelociraptorManager {
 extension VelociraptorManager {
   public func request(URLRequest: VLRURLRequestConvertible) -> VLRStubbedPair? {
     if let request = URLRequest.URLRequest {
-      
-      let stubbedRequest = request.mutableCopy() as! NSMutableURLRequest
-      stubbedRequest.allHTTPHeaderFields = [:]
-
-      var stubbedResponse: NSHTTPURLResponse? = nil
-
-      if enableDefaultResponse {
-        stubbedResponse = NSHTTPURLResponse(URL: request.URL!,
-            statusCode: 200,
-            HTTPVersion: "HTTP/1.1",
-            headerFields: [:])!
-      }
-
-      let pair = VLRStubbedPair(request: stubbedRequest, response: stubbedResponse)
-      pairs.append(pair)
-      return pair
+      let stubbedRequest = VLRStubbedRequest(rawRequest: request)
+      return self.request(stubbedRequest)
     }
     
     return nil
+  }
+  
+  public func request(stubbedRequest: VLRStubbedRequest) -> VLRStubbedPair? {
+    var stubbedResponse = VLRStubbedResponse(URL: stubbedRequest.URL)
+    
+    let pair = VLRStubbedPair(request: stubbedRequest, response: stubbedResponse)
+    pairs.append(pair)
+    return pair
   }
   
   public func clearStubs() {
@@ -47,7 +41,7 @@ extension VelociraptorManager {
     NSLog("Stubs cleared")
   }
   
-  func stubbedResponseWithURLRequest(URLRequest: VLRURLRequestConvertible) -> NSHTTPURLResponse? {
+  func stubbedResponseWithURLRequest(URLRequest: VLRURLRequestConvertible) -> VLRStubbedResponse? {
     if let request = URLRequest.URLRequest {
       for pair in pairs {
         if pair.matchesRequest(request) {
@@ -64,6 +58,10 @@ extension VelociraptorManager {
 // MARK: - Framework APIs
 public func request(URL: VLRURLRequestConvertible) -> VLRStubbedPair? {
   return VelociraptorManager.sharedManager.request(URL)
+}
+
+public func request(stubbedRequest: VLRStubbedRequest) -> VLRStubbedPair? {
+  return VelociraptorManager.sharedManager.request(stubbedRequest)
 }
 
 public func clearStubs() {
@@ -88,7 +86,7 @@ private var started = false
 
 private func activateHTTPStubs() {
   NSURLSessionConfiguration.vlr_swizzleConfigurationMethods()
-  NSURLProtocol.registerClass(URLStubProtocol)
+  NSURLProtocol.registerClass(URLStubProtocol.self)
 }
 
 private func deactivateHTTPStubs() {

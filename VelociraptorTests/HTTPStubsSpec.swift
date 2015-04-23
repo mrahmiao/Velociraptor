@@ -17,14 +17,26 @@ class HTTPStubsSpec: QuickSpec {
     var URL = NSURL(string: URLString)!
     var request = NSURLRequest(URL: URL)
     
-    describe("Using global request method to stub requests") {
-      
-      var config: NSURLSessionConfiguration!
-      var session: NSURLSession!
+    var config: NSURLSessionConfiguration!
+    var session: NSURLSession!
+    
+    beforeSuite {
+      Velociraptor.activate()
+    }
+    
+    afterSuite {
+      let manager = VelociraptorManager.sharedManager
+      Velociraptor.deactivate()
+    }
+    
+    afterEach {
+      Velociraptor.clearStubs()
+    }
+    
+    describe("Using global request method to stub requests without further customization") {
       
       context("using default session configuration") {
         beforeEach {
-          Velociraptor.activate()
           config = NSURLSessionConfiguration.defaultSessionConfiguration()
           session = NSURLSession(configuration: config)
         }
@@ -78,7 +90,6 @@ class HTTPStubsSpec: QuickSpec {
         }
         
         afterEach {
-          Velociraptor.deactivate()
           session = nil
           config = nil
         }
@@ -86,7 +97,6 @@ class HTTPStubsSpec: QuickSpec {
       
       context("using ephemeral session configuration") {
         beforeEach {
-          Velociraptor.activate()
           config = NSURLSessionConfiguration.ephemeralSessionConfiguration()
           session = NSURLSession(configuration: config)
         }
@@ -124,7 +134,7 @@ class HTTPStubsSpec: QuickSpec {
         }
         
         it("stubs request using NSURLRequest") {
-          let expectation = self.expectationWithDescription("stubs request using NSURL")
+          let expectation = self.expectationWithDescription("stubs request using NSURLRequest")
           Velociraptor.request(request)
           
           let task = session.dataTaskWithRequest(request) { data, res, err in
@@ -140,10 +150,43 @@ class HTTPStubsSpec: QuickSpec {
         }
         
         afterEach {
-          Velociraptor.deactivate()
           session = nil
           config = nil
         }
+      }
+    }
+    
+    describe("Customizing stubbed requests") {
+      beforeEach {
+        config = NSURLSessionConfiguration.defaultSessionConfiguration()
+        session = NSURLSession(configuration: config)
+      }
+      
+      context("customizing HTTP Methods") {
+        
+        it("stubs POST method") {
+          let expectation = self.expectationWithDescription("stubs POST method")
+          let mutableRequest = request.mutableCopy() as! NSMutableURLRequest
+          Velociraptor.request(mutableRequest)?.requestHTTPMethod(.POST)
+          let manager = VelociraptorManager.sharedManager
+          let task = session.dataTaskWithRequest(request) { (data, res, err) in
+            let httpResponse = res as! NSHTTPURLResponse
+            expectation.fulfill()
+            expect(httpResponse).to(beNil())
+            expect(httpResponse.statusCode).to(equal(200))
+            expect(httpResponse.allHeaderFields.count).to(equal(0))
+          }
+          
+          task.resume()
+          self.waitForExpectationsWithTimeout(1, handler: nil)
+        }
+        
+        
+      }
+      
+      afterEach {
+        config = nil
+        session = nil
       }
     }
   }

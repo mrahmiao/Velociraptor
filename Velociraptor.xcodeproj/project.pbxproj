@@ -21,6 +21,10 @@
 		4FEADA261AE87D3000CD344B /* Quick.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4FEADA211AE87CFD00CD344B /* Quick.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4FEADA271AE87D3000CD344B /* Nimble.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4FEADA221AE87CFD00CD344B /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4FEADA291AE87E4400CD344B /* HTTPStubsSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEADA281AE87E4400CD344B /* HTTPStubsSpec.swift */; };
+		4FF28D761AE89814008CC328 /* VLRHTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF28D751AE89814008CC328 /* VLRHTTPMethod.swift */; };
+		4FF28D781AE8A6B0008CC328 /* VLRStubbedRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF28D771AE8A6B0008CC328 /* VLRStubbedRequest.swift */; };
+		4FF28D7A1AE8A77E008CC328 /* VLRURLStringConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF28D791AE8A77E008CC328 /* VLRURLStringConvertible.swift */; };
+		4FF28D7C1AE8C714008CC328 /* VLRStubbedResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF28D7B1AE8C714008CC328 /* VLRStubbedResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +66,10 @@
 		4FEADA211AE87CFD00CD344B /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/iOS/Quick.framework; sourceTree = "<group>"; };
 		4FEADA221AE87CFD00CD344B /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/iOS/Nimble.framework; sourceTree = "<group>"; };
 		4FEADA281AE87E4400CD344B /* HTTPStubsSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPStubsSpec.swift; sourceTree = "<group>"; };
+		4FF28D751AE89814008CC328 /* VLRHTTPMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VLRHTTPMethod.swift; sourceTree = "<group>"; };
+		4FF28D771AE8A6B0008CC328 /* VLRStubbedRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VLRStubbedRequest.swift; sourceTree = "<group>"; };
+		4FF28D791AE8A77E008CC328 /* VLRURLStringConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VLRURLStringConvertible.swift; path = Protocols/VLRURLStringConvertible.swift; sourceTree = "<group>"; };
+		4FF28D7B1AE8C714008CC328 /* VLRStubbedResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VLRStubbedResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +140,9 @@
 				4FA9BB2D1AE5EA5600C94243 /* VLRStubbedPair.swift */,
 				4F23A7CA1AE7488200188691 /* MatchResult.swift */,
 				4FEADA1E1AE7CB8C00CD344B /* NSURLSessionConfiguration+Swizzling.swift */,
+				4FF28D751AE89814008CC328 /* VLRHTTPMethod.swift */,
+				4FF28D771AE8A6B0008CC328 /* VLRStubbedRequest.swift */,
+				4FF28D7B1AE8C714008CC328 /* VLRStubbedResponse.swift */,
 			);
 			path = Velociraptor;
 			sourceTree = "<group>";
@@ -165,6 +176,7 @@
 			isa = PBXGroup;
 			children = (
 				4FA9BB2A1AE5E45200C94243 /* VLRURLRequestConvertible.swift */,
+				4FF28D791AE8A77E008CC328 /* VLRURLStringConvertible.swift */,
 			);
 			name = Protocols;
 			sourceTree = "<group>";
@@ -277,11 +289,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4FF28D781AE8A6B0008CC328 /* VLRStubbedRequest.swift in Sources */,
 				4F1699711AE646DF003CE06C /* URLStubProtocol.swift in Sources */,
 				4FA9BB2E1AE5EA5600C94243 /* VLRStubbedPair.swift in Sources */,
 				4FEADA1F1AE7CB8C00CD344B /* NSURLSessionConfiguration+Swizzling.swift in Sources */,
 				4FA9BB2B1AE5E45200C94243 /* VLRURLRequestConvertible.swift in Sources */,
+				4FF28D7C1AE8C714008CC328 /* VLRStubbedResponse.swift in Sources */,
 				4FA9BB271AE5DB1300C94243 /* VelociraptorManager.swift in Sources */,
+				4FF28D7A1AE8A77E008CC328 /* VLRURLStringConvertible.swift in Sources */,
+				4FF28D761AE89814008CC328 /* VLRHTTPMethod.swift in Sources */,
 				4F23A7CB1AE7488200188691 /* MatchResult.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
