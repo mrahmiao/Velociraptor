@@ -44,9 +44,10 @@ extension VelociraptorManager {
   
   public func clearStubs() {
     pairs.removeAll(keepCapacity: false)
+    NSLog("Stubs cleared")
   }
   
-  public func stubbedResponseWithURLRequest(URLRequest: VLRURLRequestConvertible) -> NSHTTPURLResponse? {
+  func stubbedResponseWithURLRequest(URLRequest: VLRURLRequestConvertible) -> NSHTTPURLResponse? {
     if let request = URLRequest.URLRequest {
       for pair in pairs {
         if pair.matchesRequest(request) {
@@ -57,4 +58,40 @@ extension VelociraptorManager {
 
     return nil
   }
+}
+
+
+// MARK: - Framework APIs
+public func request(URL: VLRURLRequestConvertible) -> VLRStubbedPair? {
+  return VelociraptorManager.sharedManager.request(URL)
+}
+
+public func clearStubs() {
+  VelociraptorManager.sharedManager.clearStubs()
+}
+
+public func activate() {
+  if !started {
+    activateHTTPStubs()
+    started = !started
+  }
+}
+
+public func deactivate() {
+  if started {
+    deactivateHTTPStubs()
+    started = !started
+  }
+}
+
+private var started = false
+
+private func activateHTTPStubs() {
+  NSURLSessionConfiguration.vlr_swizzleConfigurationMethods()
+  NSURLProtocol.registerClass(URLStubProtocol)
+}
+
+private func deactivateHTTPStubs() {
+  NSURLSessionConfiguration.vlr_swizzleConfigurationMethods()
+  NSURLProtocol.unregisterClass(URLStubProtocol.self)
 }

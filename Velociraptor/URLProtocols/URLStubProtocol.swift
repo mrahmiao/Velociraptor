@@ -13,7 +13,7 @@ public class URLStubProtocol: NSURLProtocol {
     
     // Stubs http and https requests
     if let scheme = request.URL!.scheme {
-      if !contains(["http", "https"], scheme) {
+      if !contains(["http", "https"], scheme.lowercaseString) {
         return false
       }
     } else {
@@ -36,7 +36,7 @@ public class URLStubProtocol: NSURLProtocol {
       client!.URLProtocol(self, didReceiveResponse: stubbedResponse, cacheStoragePolicy: .NotAllowed)
       client!.URLProtocolDidFinishLoading(self)
     } else {
-      fatalError("Request not stubbed")
+      fatalError("Request not stubbed with URL: \(request.URL!)")
     }
   }
   
