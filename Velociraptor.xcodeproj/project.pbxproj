@@ -8,23 +8,19 @@
 
 /* Begin PBXBuildFile section */
 		4F1699711AE646DF003CE06C /* URLStubProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F1699701AE646DF003CE06C /* URLStubProtocol.swift */; };
-		4F1699741AE6560F003CE06C /* URLStubProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F1699701AE646DF003CE06C /* URLStubProtocol.swift */; };
 		4F23A7CB1AE7488200188691 /* MatchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F23A7CA1AE7488200188691 /* MatchResult.swift */; };
-		4F23A7CC1AE7488200188691 /* MatchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F23A7CA1AE7488200188691 /* MatchResult.swift */; };
 		4FA9BB0F1AE5354700C94243 /* Velociraptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 4FA9BB0E1AE5354700C94243 /* Velociraptor.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4FA9BB151AE5354700C94243 /* Velociraptor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FA9BB091AE5354700C94243 /* Velociraptor.framework */; };
 		4FA9BB271AE5DB1300C94243 /* VelociraptorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA9BB261AE5DB1300C94243 /* VelociraptorManager.swift */; };
-		4FA9BB281AE5DB1300C94243 /* VelociraptorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA9BB261AE5DB1300C94243 /* VelociraptorManager.swift */; };
 		4FA9BB2B1AE5E45200C94243 /* VLRURLRequestConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA9BB2A1AE5E45200C94243 /* VLRURLRequestConvertible.swift */; };
 		4FA9BB2C1AE5E45200C94243 /* VLRURLRequestConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA9BB2A1AE5E45200C94243 /* VLRURLRequestConvertible.swift */; };
 		4FA9BB2E1AE5EA5600C94243 /* VLRStubbedPair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA9BB2D1AE5EA5600C94243 /* VLRStubbedPair.swift */; };
-		4FA9BB2F1AE5EA5600C94243 /* VLRStubbedPair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA9BB2D1AE5EA5600C94243 /* VLRStubbedPair.swift */; };
 		4FEADA1F1AE7CB8C00CD344B /* NSURLSessionConfiguration+Swizzling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEADA1E1AE7CB8C00CD344B /* NSURLSessionConfiguration+Swizzling.swift */; };
-		4FEADA201AE7CB8C00CD344B /* NSURLSessionConfiguration+Swizzling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEADA1E1AE7CB8C00CD344B /* NSURLSessionConfiguration+Swizzling.swift */; };
 		4FEADA231AE87CFD00CD344B /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FEADA211AE87CFD00CD344B /* Quick.framework */; };
 		4FEADA241AE87CFD00CD344B /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FEADA221AE87CFD00CD344B /* Nimble.framework */; };
 		4FEADA261AE87D3000CD344B /* Quick.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4FEADA211AE87CFD00CD344B /* Quick.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4FEADA271AE87D3000CD344B /* Nimble.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4FEADA221AE87CFD00CD344B /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4FEADA291AE87E4400CD344B /* HTTPStubsSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEADA281AE87E4400CD344B /* HTTPStubsSpec.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +61,7 @@
 		4FEADA1E1AE7CB8C00CD344B /* NSURLSessionConfiguration+Swizzling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSURLSessionConfiguration+Swizzling.swift"; sourceTree = "<group>"; };
 		4FEADA211AE87CFD00CD344B /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/iOS/Quick.framework; sourceTree = "<group>"; };
 		4FEADA221AE87CFD00CD344B /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/iOS/Nimble.framework; sourceTree = "<group>"; };
+		4FEADA281AE87E4400CD344B /* HTTPStubsSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPStubsSpec.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				4FA9BB191AE5354700C94243 /* Supporting Files */,
+				4FEADA281AE87E4400CD344B /* HTTPStubsSpec.swift */,
 			);
 			path = VelociraptorTests;
 			sourceTree = "<group>";
@@ -292,12 +290,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4F1699741AE6560F003CE06C /* URLStubProtocol.swift in Sources */,
 				4FA9BB2C1AE5E45200C94243 /* VLRURLRequestConvertible.swift in Sources */,
-				4FEADA201AE7CB8C00CD344B /* NSURLSessionConfiguration+Swizzling.swift in Sources */,
-				4FA9BB2F1AE5EA5600C94243 /* VLRStubbedPair.swift in Sources */,
-				4F23A7CC1AE7488200188691 /* MatchResult.swift in Sources */,
-				4FA9BB281AE5DB1300C94243 /* VelociraptorManager.swift in Sources */,
+				4FEADA291AE87E4400CD344B /* HTTPStubsSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
