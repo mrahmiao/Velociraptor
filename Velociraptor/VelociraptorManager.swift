@@ -1,4 +1,4 @@
-//\
+//
 //  VelociraptorManager.swift
 //  Velociraptor
 //
@@ -8,14 +8,31 @@
 
 import Foundation
 
+/**
+  Responsible for creating stubbing objects. Creating your own manager is
+  not recommended. Simply using `VelociraptorManager.sharedManager` or the
+  global functions to stub requests.
+*/
 public class VelociraptorManager {
   private var pairs: [VLRStubbedPair] = []
   
+  /**
+    A shared instance of `VelociraptorManager`, used by top-level
+    Velociraptor stubbing functions. You can use it directly to stub requests.
+  */
   public static let sharedManager = VelociraptorManager()
 }
 
 // MARK: - Public APIs
 extension VelociraptorManager {
+  /**
+    Stub a request using system provided network-related classes, such as 
+    String, NSURL and NSURLRequest.
+  
+    :param: URLRequest The request you want to stub
+  
+    :returns: A stub object for you to add more detailed information.
+  */
   public func request(URLRequest: VLRURLRequestConvertible) -> VLRStubbedPair? {
     if let request = URLRequest.URLRequest {
       let stubbedRequest = VLRStubbedRequest(rawRequest: request)
@@ -25,6 +42,13 @@ extension VelociraptorManager {
     return nil
   }
   
+  /**
+    Stub a request using a fully-fledged stubbed request object.
+  
+    :param: stubbedRequest The stubbed request you want to stub
+  
+    :returns: A stub object for you to add more detailed information.
+  */
   public func request(stubbedRequest: VLRStubbedRequest) -> VLRStubbedPair? {
     var stubbedResponse = VLRStubbedResponse(URL: stubbedRequest.URL)
     
@@ -33,9 +57,12 @@ extension VelociraptorManager {
     return pair
   }
   
+  /**
+    Clear stubbed requests. The method should be invoked after each
+    test case.
+  */
   public func clearStubs() {
     pairs.removeAll(keepCapacity: false)
-    NSLog("Stubs cleared")
   }
   
   func stubbedResponseWithURLRequest(URLRequest: VLRURLRequestConvertible) -> VLRStubbedResponse? {
@@ -53,18 +80,41 @@ extension VelociraptorManager {
 
 
 // MARK: - Framework APIs
+
+/**
+  Top-level function to stub a request using system provided network-related
+  classes, such as String, NSURL and NSURLRequest.
+
+  :param: URLRequest The request you want to stub
+
+  :returns: A stub object for you to add more detailed information.
+*/
 public func request(URL: VLRURLRequestConvertible) -> VLRStubbedPair? {
   return VelociraptorManager.sharedManager.request(URL)
 }
 
+/**
+  Top-level function to stub a request using a fully-fledged stubbed
+  request object.
+
+  :param: stubbedRequest The stubbed request you want to stub
+
+  :returns: A stub object for you to add more detailed information.
+*/
 public func request(stubbedRequest: VLRStubbedRequest) -> VLRStubbedPair? {
   return VelociraptorManager.sharedManager.request(stubbedRequest)
 }
 
+/**
+  Clear stubbed requests. The method should be invoked after each
+  test case.
+*/
 public func clearStubs() {
   VelociraptorManager.sharedManager.clearStubs()
 }
 
+
+/// Activate Velociraptor to stub requests.
 public func activate() {
   if !started {
     activateHTTPStubs()
@@ -72,6 +122,8 @@ public func activate() {
   }
 }
 
+
+/// Deactivate Velociraptor.
 public func deactivate() {
   if started {
     deactivateHTTPStubs()
