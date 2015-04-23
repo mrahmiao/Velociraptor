@@ -46,7 +46,7 @@ extension VelociraptorManager {
     pairs.removeAll(keepCapacity: false)
   }
   
-  public func stubbedResponseWithURLRequest(URLRequest: VLRURLRequestConvertible) -> NSHTTPURLResponse? {
+  func stubbedResponseWithURLRequest(URLRequest: VLRURLRequestConvertible) -> NSHTTPURLResponse? {
     if let request = URLRequest.URLRequest {
       for pair in pairs {
         if pair.matchesRequest(request) {
@@ -61,7 +61,7 @@ extension VelociraptorManager {
 
 
 // MARK: - Framework APIs
-public func request(URL: VLRURLRequestConvertible) -> VLRStubbedPair?{
+public func request(URL: VLRURLRequestConvertible) -> VLRStubbedPair? {
   return VelociraptorManager.sharedManager.request(URL)
 }
 
