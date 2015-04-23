@@ -167,9 +167,10 @@ class HTTPStubsSpec: QuickSpec {
         it("stubs POST method") {
           let expectation = self.expectationWithDescription("stubs POST method")
           let mutableRequest = request.mutableCopy() as! NSMutableURLRequest
+          mutableRequest.HTTPMethod = "POST"
           Velociraptor.request(mutableRequest)?.requestHTTPMethod(.POST)
           let manager = VelociraptorManager.sharedManager
-          let task = session.dataTaskWithRequest(request) { (data, res, err) in
+          let task = session.dataTaskWithRequest(mutableRequest) { (data, res, err) in
             let httpResponse = res as! NSHTTPURLResponse
             expectation.fulfill()
             expect(httpResponse).to(beNil())
