@@ -16,6 +16,9 @@ import Foundation
 public class VelociraptorManager {
   private var pairs: [VLRStubbedPair] = []
   
+  /// Whether to provied default stubbed response. `true` by default.
+  public var enableDefaultResponse = true
+  
   /**
     A shared instance of `VelociraptorManager`, used by top-level
     Velociraptor stubbing functions. You can use it directly to stub requests.
@@ -50,7 +53,11 @@ extension VelociraptorManager {
     :returns: A stub object for you to add more detailed information.
   */
   public func request(stubbedRequest: VLRStubbedRequest) -> VLRStubbedPair? {
-    var stubbedResponse = VLRStubbedResponse(URL: stubbedRequest.URL)
+    var stubbedResponse: VLRStubbedResponse? = nil
+    
+    if enableDefaultResponse {
+      stubbedResponse = VLRStubbedResponse(URL: stubbedRequest.URL)
+    }
     
     let pair = VLRStubbedPair(request: stubbedRequest, response: stubbedResponse)
     pairs.append(pair)

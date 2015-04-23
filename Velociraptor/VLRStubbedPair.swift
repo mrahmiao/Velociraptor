@@ -10,9 +10,9 @@ import Foundation
 
 public class VLRStubbedPair {
   var request: VLRStubbedRequest
-  var response: VLRStubbedResponse
+  var response: VLRStubbedResponse?
   
-  init(request: VLRStubbedRequest, response: VLRStubbedResponse) {
+  init(request: VLRStubbedRequest, response: VLRStubbedResponse? = nil) {
     self.request = request
     self.response = response
   }
@@ -21,7 +21,13 @@ public class VLRStubbedPair {
 // MARK: - Printable
 extension VLRStubbedPair: Printable {
   public var description: String {
-    return "Request: \(request)\nResponse: \(response)"
+    var text = "Request: \(request)\n"
+    
+    if let response = response {
+      text += "Response: \(response)\n"
+    }
+    
+    return text
   }
 }
 
