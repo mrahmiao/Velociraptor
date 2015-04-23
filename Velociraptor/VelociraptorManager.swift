@@ -44,6 +44,7 @@ extension VelociraptorManager {
   
   public func clearStubs() {
     pairs.removeAll(keepCapacity: false)
+    NSLog("Stubs cleared")
   }
   
   func stubbedResponseWithURLRequest(URLRequest: VLRURLRequestConvertible) -> NSHTTPURLResponse? {
