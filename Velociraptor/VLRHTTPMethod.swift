@@ -8,11 +8,20 @@
 
 import Foundation
 
+/**
+  HTTP method definitions.
+
+  See http://tools.ietf.org/html/rfc7231#section-4.3
+*/
 public enum VLRHTTPMethod: String {
   case GET = "GET"
   case POST = "POST"
   case PUT = "PUT"
   case DELETE = "DELETE"
+  case OPTION = "OPTION"
+  case HEAD = "HEAD"
+  case TRACE = "TRACE"
+  case CONNECT = "CONNECT"
 }
 
 // MARK: - Printable
