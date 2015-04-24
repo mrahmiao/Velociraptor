@@ -111,12 +111,26 @@ extension VLRStubbedPair {
 
 // MARK: - Request DSL
 extension VLRStubbedPair {
+  
+  /**
+    Specify the HTTP method of the request you want to stub.
+  
+    :param: method HTTP method, see http://tools.ietf.org/html/rfc7231#section-4.3
+    :returns: The same object you used to specify stub information.
+  */
   public func requestHTTPMethod(method: VLRHTTPMethod) -> Self {
     request.HTTPMethod = method
     return self
   }
   
+  /**
+    Specify a single HTTP header value to the stubbed request.
+  
+    :param: value
+    :param:
+  */
   public func requestHeaderValue(value: String, forHTTPHeaderField field: String) -> Self {
+    
     return self
   }
   
@@ -132,19 +146,99 @@ extension VLRStubbedPair {
 // MARK: - Response DSL
 extension VLRStubbedPair {
   
+  /**
+    Adds an HTTP header to the stubbed response's HTTP header dictionary.
+  
+    :param: value The value of the header field.
+    :param: field The name of the header field. In keeping with the HTTP RFC, HTTP header field names are case-insensitive. The value of the same header field will be replaced while the name of the header field will be remained (ignoring the new name of the header field).
+  
+    :returns: The same object you used to specify stub information.
+  */
   public func responseHeaderValue(value: String, forHTTPHeaderField field: String) -> Self {
+    
+    response = response ?? defaultResponseWithURL(request.URL)
+    
+    for (headerKey, headerValue) in response!.HTTPHeaderFields {
+      
+      // Same header field exists
+      if headerKey.lowercaseString == field.lowercaseString {
+        response!.HTTPHeaderFields[headerKey] = value
+        return self
+      }
+    }
+    
+    // Insert new header field
+    response!.HTTPHeaderFields[field] = value
+
     return self
   }
   
-  public func responseHTTPHeaderFields(headers: [NSObject: AnyObject]) -> Self {
+  /**
+    Replace all the header fileds of the stubbed response's HTTP header fields.
+  
+    :param: headers The HTTP header fields.
+  
+    :returns: The same object you used to specify stub information.
+  */
+  public func responseHTTPHeaderFields(headers: [String: String]) -> Self {
+    response = response ?? defaultResponseWithURL(request.URL)
+    
+    response?.HTTPHeaderFields = headers
     return self
   }
   
+  /**
+    Specify the status code and/or error of the stubbed response.
+  
+    :param: statusCode The HTTP response status code. See http://tools.ietf.org/html/rfc7231#page-47
+    :param: error An optional error, default to `nil`. If provided, 
+            it will be sent with the response.
+
+    :returns: The same object you used to specify stub information.
+  */
   public func responseStatusCode(statusCode: Int, failedWithError error: NSError? = nil) -> Self {
+    response = response ?? defaultResponseWithURL(request.URL)
+    
+    response?.statusCode = statusCode
+    response?.responseError = error
     return self
   }
   
+  /**
+    Specify the stubbed response data.
+  
+    :param: data The HTTP body data you want to stubbed.
+  
+    :returns: The same object you used to specify stub information.
+  */
   public func responseBodyData(data: NSData) -> Self {
+    response = response ?? defaultResponseWithURL(request.URL)
+    
+    response?.HTTPBody = data
     return self
+  }
+  
+  /**
+    Specify the JSON data as the stubbed response data. And the
+    `Content-Type` of the response header will be set to
+    `application/json; charset=utf-8`.
+  
+    :param: data The JSON object that will be stubbed as the response data.
+
+    :returns: The same object you used to specify stub information.
+  */
+  public func responseJSONData(data: AnyObject) -> Self {
+    response = response ?? defaultResponseWithURL(request.URL)
+    
+    responseHeaderValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+    let data = NSJSONSerialization.dataWithJSONObject(data, options: NSJSONWritingOptions.allZeros, error: nil)
+    response?.HTTPBody = data
+    
+    return self
+  }
+  
+  /// Provide default stubbed response
+  private func defaultResponseWithURL(URL: VLRURLStringConvertible) -> VLRStubbedResponse {
+    return VLRStubbedResponse(URL: URL)
   }
 }
