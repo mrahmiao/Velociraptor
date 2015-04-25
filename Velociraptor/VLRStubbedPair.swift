@@ -8,6 +8,10 @@
 
 import Foundation
 
+/**
+  An object contains both stubbed request and response. You can use methods
+  on the object to modify stub configurations.
+*/
 public class VLRStubbedPair {
   var request: VLRStubbedRequest
   var response: VLRStubbedResponse?
@@ -246,6 +250,10 @@ extension VLRStubbedPair {
     
     return self
   }
+}
+
+// MARK: - Private helpers
+extension VLRStubbedPair {
   
   /// Provide default stubbed response
   private func defaultResponseWithURL(URL: VLRURLStringConvertible) -> VLRStubbedResponse {
@@ -254,7 +262,8 @@ extension VLRStubbedPair {
   
   /**
     Add header field to header fields. If same header name exists, the value
-    of the header will be replaced while ignoring the new header name (case-insensitive).
+    of the header will be replaced while ignoring the new header
+    name (case-insensitive).
   */
   private func addValue(value: String, forHTTPHeaderField field: String, inout inHTTPHeaderFields fields: [String: String]) {
     
