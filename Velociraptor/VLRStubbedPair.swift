@@ -65,14 +65,14 @@ extension VLRStubbedPair {
   }
 
   private func matchesHTTPMethodWithRequest(incomingRequest: NSURLRequest) -> MatchResult<NSURLRequest> {
-    let stubbedRequestHTTPMethod = request.HTTPMethod.rawValue
-    if incomingRequest.HTTPMethod == stubbedRequestHTTPMethod {
+    if incomingRequest.HTTPMethod == request.HTTPMethod.rawValue {
       return .Success(Box(value: incomingRequest))
     }
 
     return .Failure("HTTP Method not match: expected \(request.HTTPMethod.rawValue), got \(incomingRequest.HTTPMethod!)")
   }
 
+  // TODO: case-insensitive
   private func matchesHeaderFieldsWithRequest(incomingRequest: NSURLRequest) -> MatchResult<NSURLRequest> {
     if incomingRequest.allHTTPHeaderFields == nil && request.HTTPHeaderFields.count == 0 {
       return .Success(Box(value: incomingRequest))
@@ -116,6 +116,7 @@ extension VLRStubbedPair {
     Specify the HTTP method of the request you want to stub.
   
     :param: method HTTP method, see http://tools.ietf.org/html/rfc7231#section-4.3
+  
     :returns: The same object you used to specify stub information.
   */
   public func requestHTTPMethod(method: VLRHTTPMethod) -> Self {
@@ -124,21 +125,40 @@ extension VLRStubbedPair {
   }
   
   /**
-    Specify a single HTTP header value to the stubbed request.
+    Adds an HTTP header to the stubbed request's HTTP header dictionary.
   
-    :param: value
-    :param:
+    :param: value The value of the header field.
+    :param: field The name of the header field. In keeping with the HTTP RFC, HTTP header field names are case-insensitive. The value of the same header field will be replaced while the name of the header field will be remained (ignoring the new name of the header field).
+  
+    :returns: The same object you used to specify stub information.
   */
   public func requestHeaderValue(value: String, forHTTPHeaderField field: String) -> Self {
     
+    addValue(value, forHTTPHeaderField: field, inHTTPHeaderFields: &request.HTTPHeaderFields)
     return self
   }
   
+  /**
+    Replace all the header fileds of the stubbed request's HTTP header fields.
+  
+    :param: headers The HTTP header fields.
+  
+    :returns: The same object you used to specify stub information.
+  */
   public func requestHTTPHeaderFields(headers: [String: String]) -> Self {
+    request.HTTPHeaderFields = headers
     return self
   }
   
+  /**
+    Stub the HTTP body data of the request.
+  
+    :param: data The stubbed HTTP body data.
+  
+    :returns: The same object you used to specify stub information.
+  */
   public func requestBodyData(data: NSData) -> Self {
+    request.HTTPBody = data
     return self
   }
 }
@@ -158,18 +178,8 @@ extension VLRStubbedPair {
     
     response = response ?? defaultResponseWithURL(request.URL)
     
-    for (headerKey, headerValue) in response!.HTTPHeaderFields {
-      
-      // Same header field exists
-      if headerKey.lowercaseString == field.lowercaseString {
-        response!.HTTPHeaderFields[headerKey] = value
-        return self
-      }
-    }
+    addValue(value, forHTTPHeaderField: field, inHTTPHeaderFields: &response!.HTTPHeaderFields)
     
-    // Insert new header field
-    response!.HTTPHeaderFields[field] = value
-
     return self
   }
   
@@ -240,5 +250,25 @@ extension VLRStubbedPair {
   /// Provide default stubbed response
   private func defaultResponseWithURL(URL: VLRURLStringConvertible) -> VLRStubbedResponse {
     return VLRStubbedResponse(URL: URL)
+  }
+  
+  /**
+    Add header field to header fields. If same header name exists, the value
+    of the header will be replaced while ignoring the new header name (case-insensitive).
+  */
+  private func addValue(value: String, forHTTPHeaderField field: String, inout inHTTPHeaderFields fields: [String: String]) {
+    
+    // Check whehter same header field exists
+    for (headerKey, headerValue) in fields {
+      
+      // Same header field exists
+      if headerKey.lowercaseString == field.lowercaseString {
+        fields[headerKey] = value
+        return
+      }
+    }
+    
+    // Insert new header field
+    fields[field] = value
   }
 }
