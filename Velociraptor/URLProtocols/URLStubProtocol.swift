@@ -8,8 +8,8 @@
 
 import Foundation
 
-public class URLStubProtocol: NSURLProtocol {
-  public override class func canInitWithRequest(request: NSURLRequest) -> Bool {
+class URLStubProtocol: NSURLProtocol {
+  override class func canInitWithRequest(request: NSURLRequest) -> Bool {
     
     // Stubs http and https requests
     if let scheme = request.URL!.scheme {
@@ -23,15 +23,15 @@ public class URLStubProtocol: NSURLProtocol {
     return true
   }
   
-  public override class func canonicalRequestForRequest(request: NSURLRequest) -> NSURLRequest {
+  override class func canonicalRequestForRequest(request: NSURLRequest) -> NSURLRequest {
     return request
   }
   
-  public override class func requestIsCacheEquivalent(aRequest: NSURLRequest, toRequest bRequest: NSURLRequest) -> Bool {
+  override class func requestIsCacheEquivalent(aRequest: NSURLRequest, toRequest bRequest: NSURLRequest) -> Bool {
     return false
   }
 
-  public override func startLoading() {
+  override func startLoading() {
     if let stubbedResponse = VelociraptorManager.sharedManager.stubbedResponseWithURLRequest(request) {
       
       let response = NSHTTPURLResponse(stubbedResponse: stubbedResponse)
@@ -42,7 +42,7 @@ public class URLStubProtocol: NSURLProtocol {
     }
   }
   
-  public override func stopLoading() {
+  override func stopLoading() {
     
   }
   
