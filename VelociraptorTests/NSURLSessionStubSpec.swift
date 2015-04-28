@@ -1,5 +1,5 @@
 //
-//  HTTPStubsSpec.swift
+//  NSURLSessionStubSpec.swift
 //  Velociraptor
 //
 //  Created by mrahmiao on 4/23/15.
@@ -10,7 +10,7 @@ import Quick
 import Nimble
 import Velociraptor
 
-class HTTPStubsSpec: QuickSpec {
+class NSURLSessionStubsSpec: QuickSpec {
   override func spec() {
     
     var URLString = "https://github.com/mrahmiao/Velociraptor"
@@ -160,29 +160,6 @@ class HTTPStubsSpec: QuickSpec {
       beforeEach {
         config = NSURLSessionConfiguration.defaultSessionConfiguration()
         session = NSURLSession(configuration: config)
-      }
-      
-      context("customizing HTTP Methods") {
-        
-        it("stubs POST method") {
-          let expectation = self.expectationWithDescription("stubs POST method")
-          let mutableRequest = request.mutableCopy() as! NSMutableURLRequest
-          mutableRequest.HTTPMethod = "POST"
-          Velociraptor.request(mutableRequest)?.requestHTTPMethod(.POST)
-          let manager = VelociraptorManager.sharedManager
-          let task = session.dataTaskWithRequest(mutableRequest) { (data, res, err) in
-            let httpResponse = res as! NSHTTPURLResponse
-            expectation.fulfill()
-            expect(httpResponse).to(beNil())
-            expect(httpResponse.statusCode).to(equal(200))
-            expect(httpResponse.allHeaderFields.count).to(equal(0))
-          }
-          
-          task.resume()
-          self.waitForExpectationsWithTimeout(1, handler: nil)
-        }
-        
-        
       }
       
       afterEach {
