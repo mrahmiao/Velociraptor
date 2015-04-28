@@ -8,6 +8,9 @@
 
 import Foundation
 
+/**
+  A class contains all the stubbed request information.
+*/
 public class VLRStubbedRequest {
   public var HTTPMethod: VLRHTTPMethod = .GET
   public var URL: String

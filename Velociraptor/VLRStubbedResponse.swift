@@ -8,6 +8,9 @@
 
 import Foundation
 
+/**
+A class contains all the stubbed response information.
+*/
 public class VLRStubbedResponse {
   var URL: String
   var statusCode: Int
