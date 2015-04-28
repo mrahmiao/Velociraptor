@@ -18,6 +18,7 @@ public enum VLRHTTPMethod: String {
   case POST = "POST"
   case PUT = "PUT"
   case DELETE = "DELETE"
+  case PATCH = "PATCH"
   case OPTION = "OPTION"
   case HEAD = "HEAD"
   case TRACE = "TRACE"
