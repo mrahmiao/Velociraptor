@@ -166,3 +166,26 @@ private extension Dictionary {
     return fields
   }
 }
+
+// MARK: - Printable
+extension VLRHeaderFieldMatchingOptions: Printable {
+  public var description: String {
+    switch self {
+    case .Exactly:
+      return ".Exactly"
+    case .Partially(let minimumNumber):
+      return ".Partially(\(minimumNumber))"
+    case .StrictSubset:
+      return ".StrictSubset"
+    case .Arbitrarily:
+      return ".Arbitrarily"
+    }
+  }
+}
+
+// MARK: - DebugPrintable
+extension VLRHeaderFieldMatchingOptions: DebugPrintable {
+  public var debugDescription: String {
+    return description
+  }
+}
