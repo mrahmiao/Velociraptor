@@ -20,6 +20,12 @@ public class VelociraptorManager {
   public var enableDefaultResponse = true
   
   /**
+    Use the option to control the behavior when matching HTTP header fields.
+    Default to `.Exactly`.
+  */
+  public var headerFieldMatchingOption: VLRHeaderFieldMatchingOptions = .Exactly
+  
+  /**
     A shared instance of `VelociraptorManager`, used by top-level
     Velociraptor stubbing functions. You can use it directly to stub requests.
   */
@@ -135,6 +141,20 @@ public func deactivate() {
   if started {
     deactivateHTTPStubs()
     started = !started
+  }
+}
+
+/** 
+  Set the behavior when matching HTTP header fields.
+
+  Default to `.Exactly`.
+*/
+public var headerFieldMatchingOption: VLRHeaderFieldMatchingOptions {
+  set {
+    VelociraptorManager.sharedManager.headerFieldMatchingOption = headerFieldMatchingOption
+  }
+  get {
+    return VelociraptorManager.sharedManager.headerFieldMatchingOption
   }
 }
 
