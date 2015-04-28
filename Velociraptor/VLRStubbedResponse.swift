@@ -21,12 +21,12 @@ public class VLRStubbedResponse {
   var HTTPBody: NSData?
   var responseError: NSError?
   
-  init(URL: VLRURLStringConvertible, statusCode: Int = 200) {
+  public init(URL: VLRURLStringConvertible, statusCode: Int = 200) {
     self.URL = URL.URLString
     self.statusCode = statusCode
   }
   
-  convenience init(rawResponse: NSHTTPURLResponse) {
+  public convenience init(rawResponse: NSHTTPURLResponse) {
     let URL = rawResponse.URL!.URLString
     self.init(URL: URL, statusCode: rawResponse.statusCode)
     

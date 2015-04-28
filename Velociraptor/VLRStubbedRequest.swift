@@ -17,12 +17,12 @@ public class VLRStubbedRequest {
   public var HTTPBody: NSData?
   public var HTTPHeaderFields: [String: String] = [:]
   
-  init(URL: VLRURLStringConvertible, HTTPMethod method: VLRHTTPMethod = .GET) {
+  public init(URL: VLRURLStringConvertible, HTTPMethod method: VLRHTTPMethod = .GET) {
     self.URL = URL.URLString
     self.HTTPMethod = method
   }
   
-  convenience init(rawRequest: NSURLRequest) {
+  public convenience init(rawRequest: NSURLRequest) {
     let method = VLRHTTPMethod(rawValue: rawRequest.HTTPMethod!) ?? VLRHTTPMethod.GET
     self.init(URL: rawRequest, HTTPMethod: method)
     
