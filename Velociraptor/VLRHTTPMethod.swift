@@ -22,6 +22,11 @@ public enum VLRHTTPMethod: String {
   case HEAD = "HEAD"
   case TRACE = "TRACE"
   case CONNECT = "CONNECT"
+  
+  func matchesIncomingHTTPMethod(method: String?) -> Bool {
+    let HTTPMethod = method ?? VLRHTTPMethod.GET.rawValue
+    return self.rawValue == method
+  }
 }
 
 // MARK: - Printable
