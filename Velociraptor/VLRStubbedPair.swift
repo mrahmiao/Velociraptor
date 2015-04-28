@@ -15,10 +15,12 @@ import Foundation
 public class VLRStubbedPair {
   var request: VLRStubbedRequest
   var response: VLRStubbedResponse?
+  private let headerFieldMatchingOption: VLRHeaderFieldMatchingOptions
   
-  init(request: VLRStubbedRequest, response: VLRStubbedResponse? = nil) {
+  init(request: VLRStubbedRequest, response: VLRStubbedResponse? = nil, matchingOption: VLRHeaderFieldMatchingOptions) {
     self.request = request
     self.response = response
+    self.headerFieldMatchingOption = matchingOption
   }
 }
 
@@ -69,39 +71,22 @@ extension VLRStubbedPair {
   }
 
   private func matchesHTTPMethodWithRequest(incomingRequest: NSURLRequest) -> MatchResult<NSURLRequest> {
-    if incomingRequest.HTTPMethod == request.HTTPMethod.rawValue {
+    if request.HTTPMethod.matchesIncomingHTTPMethod(incomingRequest.HTTPMethod) {
       return .Success(Box(value: incomingRequest))
     }
 
     return .Failure("HTTP Method not match: expected \(request.HTTPMethod.rawValue), got \(incomingRequest.HTTPMethod!)")
   }
 
-  // TODO: case-insensitive
   private func matchesHeaderFieldsWithRequest(incomingRequest: NSURLRequest) -> MatchResult<NSURLRequest> {
-    if incomingRequest.allHTTPHeaderFields == nil && request.HTTPHeaderFields.count == 0 {
+    let incomingHeaderFields = incomingRequest.allHTTPHeaderFields ?? [:]
+    let matched = headerFieldMatchingOption.incomingHeaderFields(incomingHeaderFields, matchesStubbedHeaderFields: request.HTTPHeaderFields)
+    
+    if matched {
       return .Success(Box(value: incomingRequest))
     }
-
-    let errorMessage = "HTTP header fields not match"
-
-    if let incomingHeaderFields = incomingRequest.allHTTPHeaderFields {
-      if incomingHeaderFields.count != request.HTTPHeaderFields.count {
-        return .Failure(errorMessage)
-      }
-
-      for (key, headerValue) in incomingHeaderFields {
-        let incomingHeaderFiledValue = headerValue as? String
-        let stubbedHeaderFieldValue = request.HTTPHeaderFields[key as! String]
-        
-        if incomingHeaderFiledValue != stubbedHeaderFieldValue {
-          return .Failure(errorMessage)
-        }
-      }
-
-      return .Success(Box(value: incomingRequest))
-    } else {
-      return .Failure(errorMessage)
-    }
+    
+    return .Failure("Header fields not match with matching option: \(headerFieldMatchingOption)")
   }
 
   private func matchesHTTPBodyDataWithRequest(incomingRequest: NSURLRequest) -> MatchResult<NSURLRequest> {
@@ -115,7 +100,6 @@ extension VLRStubbedPair {
 
 // MARK: - Request DSL
 extension VLRStubbedPair {
-  
   /**
     Specify the HTTP method of the request you want to stub.
   
@@ -138,7 +122,7 @@ extension VLRStubbedPair {
   */
   public func requestHeaderValue(value: String, forHTTPHeaderField field: String) -> Self {
     
-    addValue(value, forHTTPHeaderField: field, inHTTPHeaderFields: &request.HTTPHeaderFields)
+    setValue(value, forHTTPHeaderField: field, inHTTPHeaderFields: &request.HTTPHeaderFields)
     return self
   }
   
@@ -171,6 +155,18 @@ extension VLRStubbedPair {
 extension VLRStubbedPair {
   
   /**
+    Set the stubbed response.
+  
+    :param: response An object contains all the stubbed response information.
+  
+    :returns: An object you used to specify stub information.
+  */
+  public func response(response: VLRStubbedResponse) -> Self {
+    self.response = response
+    return self
+  }
+  
+  /**
     Adds an HTTP header to the stubbed response's HTTP header dictionary.
   
     :param: value The value of the header field.
@@ -182,7 +178,7 @@ extension VLRStubbedPair {
     
     response = response ?? defaultResponseWithURL(request.URL)
     
-    addValue(value, forHTTPHeaderField: field, inHTTPHeaderFields: &response!.HTTPHeaderFields)
+    setValue(value, forHTTPHeaderField: field, inHTTPHeaderFields: &response!.HTTPHeaderFields)
     
     return self
   }
@@ -265,7 +261,7 @@ extension VLRStubbedPair {
     of the header will be replaced while ignoring the new header
     name (case-insensitive).
   */
-  private func addValue(value: String, forHTTPHeaderField field: String, inout inHTTPHeaderFields fields: [String: String]) {
+  private func setValue(value: String, forHTTPHeaderField field: String, inout inHTTPHeaderFields fields: [String: String]) {
     
     // Check whehter same header field exists
     for (headerKey, headerValue) in fields {

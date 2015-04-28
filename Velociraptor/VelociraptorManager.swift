@@ -65,7 +65,7 @@ extension VelociraptorManager {
       stubbedResponse = VLRStubbedResponse(URL: stubbedRequest.URL)
     }
     
-    let pair = VLRStubbedPair(request: stubbedRequest, response: stubbedResponse)
+    let pair = VLRStubbedPair(request: stubbedRequest, response: stubbedResponse, matchingOption: headerFieldMatchingOption)
     pairs.append(pair)
     return pair
   }
