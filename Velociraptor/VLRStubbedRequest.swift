@@ -9,10 +9,10 @@
 import Foundation
 
 public class VLRStubbedRequest {
-  var HTTPMethod: VLRHTTPMethod = .GET
-  var URL: String
-  var HTTPBody: NSData?
-  var HTTPHeaderFields: [String: String] = [:]
+  public var HTTPMethod: VLRHTTPMethod = .GET
+  public var URL: String
+  public var HTTPBody: NSData?
+  public var HTTPHeaderFields: [String: String] = [:]
   
   init(URL: VLRURLStringConvertible, HTTPMethod method: VLRHTTPMethod = .GET) {
     self.URL = URL.URLString
