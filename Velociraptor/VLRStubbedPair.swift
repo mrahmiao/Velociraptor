@@ -13,8 +13,14 @@ import Foundation
   on the object to modify stub configurations.
 */
 public class VLRStubbedPair {
+  
+  /// Stubbed request information
   var request: VLRStubbedRequest
+  
+  /// Stubbed resposne information
   var response: VLRStubbedResponse?
+  
+  /// Option to control behavior of HTTP header fields matching
   private let headerFieldMatchingOption: VLRHeaderFieldMatchingOptions
   
   init(request: VLRStubbedRequest, response: VLRStubbedResponse? = nil, matchingOption: VLRHeaderFieldMatchingOptions) {
