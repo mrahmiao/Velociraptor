@@ -17,8 +17,14 @@ class NSURLSessionStubsSpec: QuickSpec {
     var URL = NSURL(string: URLString)!
     var request = NSURLRequest(URL: URL)
     
-    var config: NSURLSessionConfiguration!
     var session: NSURLSession!
+    var config: NSURLSessionConfiguration! {
+      didSet {
+        if let config = config {
+          session = NSURLSession(configuration: config)
+        }
+      }
+    }
     
     beforeSuite {
       Velociraptor.activate()
@@ -32,6 +38,222 @@ class NSURLSessionStubsSpec: QuickSpec {
       config = nil
       session = nil
       Velociraptor.clearStubs()
+    }
+    
+    // MARK: - Stub requests without any further stubs
+    describe("Stubs requests without any further stubs") {
+      
+      // MARK: under the default session configuration
+      context("under the default session configuration") {
+        beforeEach {
+          config = NSURLSessionConfiguration.defaultSessionConfiguration()
+        }
+        
+        it("using an URL string and receives default response") {
+          let expectation = self.expectationWithDescription("Stubs request using URL string")
+          
+          // Stub the request
+          Velociraptor.request(URLString)
+          let url = NSURL(string: URLString)!
+          let task = session.dataTaskWithURL(url) { (data, res, error) in
+            expectation.fulfill()
+            
+            let response = res as! NSHTTPURLResponse
+            
+            expect(data.length).to(equal(0))
+            expect(response).notTo(beNil())
+            expect(response.statusCode).to(equal(200))
+            expect(error).to(beNil())
+          }
+          
+          task.resume()
+          self.waitForExpectationsWithTimeout(1) { error in
+            if let error = error {
+              XCTFail(error.localizedDescription)
+            }
+          }
+        }
+        
+        it("using a NSURL and receives default response") {
+          let expectation = self.expectationWithDescription("Stubs request using NSURL")
+          
+          // Stub the request
+          Velociraptor.request(URL)
+          let task = session.dataTaskWithURL(URL) { (data, res, error) in
+            expectation.fulfill()
+            
+            let response = res as! NSHTTPURLResponse
+            
+            expect(data.length).to(equal(0))
+            expect(response).notTo(beNil())
+            expect(response.statusCode).to(equal(200))
+            expect(error).to(beNil())
+          }
+          
+          task.resume()
+          self.waitForExpectationsWithTimeout(1) { error in
+            if let error = error {
+              XCTFail(error.localizedDescription)
+            }
+          }
+        }
+        
+        it("using a NSURLRequest and receives default response") {
+          let expectation = self.expectationWithDescription("Stubs request using NSURLRequest")
+          
+          // Stub the request
+          Velociraptor.request(request)
+          let task = session.dataTaskWithRequest(request) { (data, res, error) in
+            expectation.fulfill()
+            
+            let response = res as! NSHTTPURLResponse
+            
+            expect(data.length).to(equal(0))
+            expect(response).notTo(beNil())
+            expect(response.statusCode).to(equal(200))
+            expect(error).to(beNil())
+          }
+          
+          task.resume()
+          self.waitForExpectationsWithTimeout(1) { error in
+            if let error = error {
+              XCTFail(error.localizedDescription)
+            }
+          }
+        }
+        
+        it("using a stubbed request and receives default resposne") {
+          let expectation = self.expectationWithDescription("Stubs request using VLRStubbedRequest object")
+          
+          // Stub the request
+          let stubbedRequest = VLRStubbedRequest(URL: URL)
+          Velociraptor.request(stubbedRequest)
+          let task = session.dataTaskWithURL(URL) { (data, res, error) in
+            expectation.fulfill()
+            
+            let response = res as! NSHTTPURLResponse
+            
+            expect(data.length).to(equal(0))
+            expect(response).notTo(beNil())
+            expect(response.statusCode).to(equal(200))
+            expect(error).to(beNil())
+          }
+          
+          task.resume()
+          self.waitForExpectationsWithTimeout(1) { error in
+            if let error = error {
+              XCTFail(error.localizedDescription)
+            }
+          }
+        }
+      }
+      
+      // MARK: under the ephemeral session configuration
+      context("under the ephemeral session configuration") {
+        beforeEach {
+          config = NSURLSessionConfiguration.ephemeralSessionConfiguration()
+        }
+        
+        it("using an URL string and receives default response") {
+          let expectation = self.expectationWithDescription("Stubs request using URL string")
+          
+          // Stub the request
+          Velociraptor.request(URLString)
+          let url = NSURL(string: URLString)!
+          let task = session.dataTaskWithURL(url) { (data, res, error) in
+            expectation.fulfill()
+            
+            let response = res as! NSHTTPURLResponse
+            
+            expect(data.length).to(equal(0))
+            expect(response).notTo(beNil())
+            expect(response.statusCode).to(equal(200))
+            expect(error).to(beNil())
+          }
+          
+          task.resume()
+          self.waitForExpectationsWithTimeout(1) { error in
+            if let error = error {
+              XCTFail(error.localizedDescription)
+            }
+          }
+        }
+        
+        it("using a NSURL and receives default response") {
+          let expectation = self.expectationWithDescription("Stubs request using NSURL")
+          
+          // Stub the request
+          Velociraptor.request(URL)
+          let task = session.dataTaskWithURL(URL) { (data, res, error) in
+            expectation.fulfill()
+            
+            let response = res as! NSHTTPURLResponse
+            
+            expect(data.length).to(equal(0))
+            expect(response).notTo(beNil())
+            expect(response.statusCode).to(equal(200))
+            expect(error).to(beNil())
+          }
+          
+          task.resume()
+          self.waitForExpectationsWithTimeout(1) { error in
+            if let error = error {
+              XCTFail(error.localizedDescription)
+            }
+          }
+        }
+        
+        it("using a NSURLRequest and receives default response") {
+          let expectation = self.expectationWithDescription("Stubs request using NSURLRequest")
+          
+          // Stub the request
+          Velociraptor.request(request)
+          let task = session.dataTaskWithRequest(request) { (data, res, error) in
+            expectation.fulfill()
+            
+            let response = res as! NSHTTPURLResponse
+            
+            expect(data.length).to(equal(0))
+            expect(response).notTo(beNil())
+            expect(response.statusCode).to(equal(200))
+            expect(error).to(beNil())
+          }
+          
+          task.resume()
+          self.waitForExpectationsWithTimeout(1) { error in
+            if let error = error {
+              XCTFail(error.localizedDescription)
+            }
+          }
+        }
+        
+        it("using a stubbed request and receives default resposne") {
+          let expectation = self.expectationWithDescription("Stubs request using VLRStubbedRequest object")
+          
+          // Stub the request
+          let stubbedRequest = VLRStubbedRequest(URL: URL)
+          Velociraptor.request(stubbedRequest)
+          let task = session.dataTaskWithURL(URL) { (data, res, error) in
+            expectation.fulfill()
+            
+            let response = res as! NSHTTPURLResponse
+            
+            expect(data.length).to(equal(0))
+            expect(response).notTo(beNil())
+            expect(response.statusCode).to(equal(200))
+            expect(error).to(beNil())
+          }
+          
+          task.resume()
+          self.waitForExpectationsWithTimeout(1) { error in
+            if let error = error {
+              XCTFail(error.localizedDescription)
+            }
+          }
+        }
+        
+        
+      }
     }
   }
 }
