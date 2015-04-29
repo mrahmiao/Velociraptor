@@ -151,7 +151,7 @@ public func deactivate() {
 */
 public var headerFieldMatchingOption: VLRHeaderFieldMatchingOptions {
   set {
-    VelociraptorManager.sharedManager.headerFieldMatchingOption = headerFieldMatchingOption
+    VelociraptorManager.sharedManager.headerFieldMatchingOption = newValue
   }
   get {
     return VelociraptorManager.sharedManager.headerFieldMatchingOption
