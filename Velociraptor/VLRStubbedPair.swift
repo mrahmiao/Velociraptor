@@ -92,7 +92,10 @@ extension VLRStubbedPair {
       return .Success(Box(value: incomingRequest))
     }
     
-    return .Failure("Header fields not match with matching option: \(headerFieldMatchingOption)")
+    let message = "Header fields not match with matching option: \(headerFieldMatchingOption)." +
+        "\nExpected header fields: \(request.HTTPHeaderFields)" +
+        "\nActual header fields: \(incomingHeaderFields)"
+    return .Failure(message)
   }
 
   private func matchesHTTPBodyDataWithRequest(incomingRequest: NSURLRequest) -> MatchResult<NSURLRequest> {
@@ -100,7 +103,10 @@ extension VLRStubbedPair {
       return .Success(Box(value: incomingRequest))
     }
 
-    return .Failure("HTTP body data not match")
+    let message = "HTTP body data not match" +
+        "\nExpected body data length: \(incomingRequest.HTTPBody?.length)" +
+        "\nActual body data length: \(request.HTTPBody?.length)"
+    return .Failure(message)
   }
 }
 
