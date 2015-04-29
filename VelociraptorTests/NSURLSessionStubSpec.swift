@@ -376,7 +376,7 @@ class NSURLSessionStubsSpec: QuickSpec {
       }
       
       it("uses .Exactly option and only matches when two header fields are exactly the same ") {
-        let expectation = self.expectationWithDescription("HTTP header fields matched exactly")
+        let expectation = self.expectationWithDescription("Exactly matching")
         let stubbedHeaders = ["Accept": "*", "Stubbued": "Headers"]
         
         // Default option
@@ -407,7 +407,7 @@ class NSURLSessionStubsSpec: QuickSpec {
       }
       
       it("uses .Partially(1) option and matches when there is at least 1 common header field") {
-        let expectation = self.expectationWithDescription("HTTP header fields matched exactly")
+        let expectation = self.expectationWithDescription("Partially matching")
         
         Velociraptor.headerFieldMatchingOption = .Partially(1)
         Velociraptor.request(URLString)?.requestHTTPHeaderFields(stubbedHeaders)
@@ -434,7 +434,59 @@ class NSURLSessionStubsSpec: QuickSpec {
           }
         }
       }
+      
+      it("uses .StrictSubset option and only matches empty set") {
+        let expectation = self.expectationWithDescription("Strict subset matching")
+        
+        Velociraptor.headerFieldMatchingOption = .StrictSubset
+        Velociraptor.request(URLString)?.requestHTTPHeaderFields(stubbedHeaders)
+        let mutableRequest = request.mutableCopy() as! NSMutableURLRequest
+        
+        let task = session.dataTaskWithRequest(mutableRequest) { (data, res, error) in
+          expectation.fulfill()
+          
+          let response = res as! NSHTTPURLResponse
+          
+          expect(data.length).to(equal(0))
+          expect(response).notTo(beNil())
+          expect(response.statusCode).to(equal(200))
+          expect(error).to(beNil())
+        }
+        
+        task.resume()
+        self.waitForExpectationsWithTimeout(1) { error in
+          if let error = error {
+            XCTFail(error.localizedDescription)
+          }
+        }
+      }
+      
+      it("uses .Arbitrarily option and matches arbitrary requests") {
+        let expectation = self.expectationWithDescription("Arbitrarily matching")
+        
+        Velociraptor.headerFieldMatchingOption = .Arbitrarily
+        Velociraptor.request(URLString)?.requestHTTPHeaderFields(stubbedHeaders)
+        let mutableRequest = request.mutableCopy() as! NSMutableURLRequest
+        mutableRequest.allHTTPHeaderFields = ["Accept": "*", "Others": "Someothers"]
+        
+        let task = session.dataTaskWithRequest(mutableRequest) { (data, res, error) in
+          expectation.fulfill()
+          
+          let response = res as! NSHTTPURLResponse
+          
+          expect(data.length).to(equal(0))
+          expect(response).notTo(beNil())
+          expect(response.statusCode).to(equal(200))
+          expect(error).to(beNil())
+        }
+        
+        task.resume()
+        self.waitForExpectationsWithTimeout(1) { error in
+          if let error = error {
+            XCTFail(error.localizedDescription)
+          }
+        }
+      }
     }
-    
   }
 }
