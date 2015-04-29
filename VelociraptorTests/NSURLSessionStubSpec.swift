@@ -255,5 +255,117 @@ class NSURLSessionStubsSpec: QuickSpec {
         
       }
     }
+    
+    
+    
+    // MARK: - Stubs HTTP method
+    describe("Stubs HTTP method") {
+      
+      beforeEach {
+        config = NSURLSessionConfiguration.defaultSessionConfiguration()
+      }
+        
+      it("stubs POST request and receives default response") {
+        let expectation = self.expectationWithDescription("Stubs POST requests")
+        Velociraptor.request(URLString)?.requestHTTPMethod(.POST)
+        
+        let postRequest = request.mutableCopy() as! NSMutableURLRequest
+        postRequest.HTTPMethod = "POST"
+        let task = session.dataTaskWithRequest(postRequest) { (data, res, error) in
+          expectation.fulfill()
+          
+          let response = res as! NSHTTPURLResponse
+          
+          expect(data.length).to(equal(0))
+          expect(response).notTo(beNil())
+          expect(response.statusCode).to(equal(200))
+          expect(error).to(beNil())
+        }
+        
+        task.resume()
+        self.waitForExpectationsWithTimeout(1) { error in
+          if let error = error {
+            XCTFail(error.localizedDescription)
+          }
+        }
+      }
+      
+      it("stubs PUT request and receives default response") {
+        let expectation = self.expectationWithDescription("Stubs PUT requests")
+        Velociraptor.request(URLString)?.requestHTTPMethod(.PUT)
+        
+        let putRequest = request.mutableCopy() as! NSMutableURLRequest
+        putRequest.HTTPMethod = "PUT"
+        let task = session.dataTaskWithRequest(putRequest) { (data, res, error) in
+          expectation.fulfill()
+          
+          let response = res as! NSHTTPURLResponse
+          
+          expect(data.length).to(equal(0))
+          expect(response).notTo(beNil())
+          expect(response.statusCode).to(equal(200))
+          expect(error).to(beNil())
+        }
+        
+        task.resume()
+        self.waitForExpectationsWithTimeout(1) { error in
+          if let error = error {
+            XCTFail(error.localizedDescription)
+          }
+        }
+      }
+      
+      it("stubs DELETE request and receives default response") {
+        let expectation = self.expectationWithDescription("Stubs DELETE requests")
+        Velociraptor.request(URLString)?.requestHTTPMethod(.DELETE)
+        
+        let delRequest = request.mutableCopy() as! NSMutableURLRequest
+        delRequest.HTTPMethod = "DELETE"
+        let task = session.dataTaskWithRequest(delRequest) { (data, res, error) in
+          expectation.fulfill()
+          
+          let response = res as! NSHTTPURLResponse
+          
+          expect(data.length).to(equal(0))
+          expect(response).notTo(beNil())
+          expect(response.statusCode).to(equal(200))
+          expect(error).to(beNil())
+        }
+        
+        task.resume()
+        self.waitForExpectationsWithTimeout(1) { error in
+          if let error = error {
+            XCTFail(error.localizedDescription)
+          }
+        }
+      }
+    
+      it("stubs PATCH request and receives default response") {
+        let expectation = self.expectationWithDescription("Stubs PATCH requests")
+        Velociraptor.request(URLString)?.requestHTTPMethod(.PATCH)
+        
+        let patchRequest = request.mutableCopy() as! NSMutableURLRequest
+        patchRequest.HTTPMethod = "PATCH"
+        let task = session.dataTaskWithRequest(patchRequest) { (data, res, error) in
+          expectation.fulfill()
+          
+          let response = res as! NSHTTPURLResponse
+          
+          expect(data.length).to(equal(0))
+          expect(response).notTo(beNil())
+          expect(response.statusCode).to(equal(200))
+          expect(error).to(beNil())
+        }
+        
+        task.resume()
+        self.waitForExpectationsWithTimeout(1) { error in
+          if let error = error {
+            XCTFail(error.localizedDescription)
+          }
+        }
+      }
+    }
+    
+    
   }
 }
