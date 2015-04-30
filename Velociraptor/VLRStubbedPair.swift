@@ -163,6 +163,30 @@ extension VLRStubbedPair {
     request.HTTPHeaderFields["Content-Length"] = String(data.length)
     return self
   }
+  
+  /**
+    TODO: requestParameters
+  
+    Stub the request data. If the method of stubbed request is `GET`, `HEAD`
+    or `DELETE`, parameters will be appended to the URL query.
+  
+    For other HTTP methods, parameters will be set as the body data of the 
+    request, and the `Content-Type` header field will be set to 
+    `application/x-www-form-urlencoded`.
+  
+    :param: parameters The parameters attched to the stubbed request.
+  
+    :returns: The same object you used to specify stub information.
+  */
+  private func requestParameters(parameters: [String: AnyObject]) -> Self {
+    switch request.HTTPMethod {
+    case .GET, .HEAD, .DELETE:
+      println("TODO: encoded the parameters as a query string")
+    default:
+      request.HTTPHeaderFields["Content-Type"] = "x-www-form-urlencoded"
+    }
+    return self
+  }
 }
 
 // MARK: - Response DSL
