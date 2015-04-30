@@ -12,14 +12,13 @@ import Foundation
 A class contains all the stubbed response information.
 */
 public class VLRStubbedResponse {
-  var URL: String
-  var statusCode: Int
+  public var URL: String
+  public var statusCode: Int
+  public var HTTPHeaderFields = [String: String]()
+  public var HTTPBody: NSData?
+  public var responseError: NSError?
   
-  var HTTPHeaderFields = [String: String]()
-  var HTTPVersion = "HTTP/1.1"
-  
-  var HTTPBody: NSData?
-  var responseError: NSError?
+  private var HTTPVersion = "HTTP/1.1"
   
   public init(URL: VLRURLStringConvertible, statusCode: Int = 200) {
     self.URL = URL.URLString
