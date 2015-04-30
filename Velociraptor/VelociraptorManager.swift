@@ -162,10 +162,12 @@ private var started = false
 
 private func activateHTTPStubs() {
   NSURLSessionConfiguration.vlr_swizzleConfigurationMethods()
+  NSMutableURLRequest.vlr_swizzleSetHTTPBody()
   NSURLProtocol.registerClass(URLStubProtocol.self)
 }
 
 private func deactivateHTTPStubs() {
   NSURLSessionConfiguration.vlr_swizzleConfigurationMethods()
+  NSMutableURLRequest.vlr_swizzleSetHTTPBody()
   NSURLProtocol.unregisterClass(URLStubProtocol.self)
 }

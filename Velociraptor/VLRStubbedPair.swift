@@ -99,13 +99,14 @@ extension VLRStubbedPair {
   }
 
   private func matchesHTTPBodyDataWithRequest(incomingRequest: NSURLRequest) -> MatchResult<NSURLRequest> {
-    if incomingRequest.HTTPBody == request.HTTPBody {
+    let bodyData = NSURLProtocol.propertyForKey(HTTPBodyDataKey, inRequest: incomingRequest) as? NSData
+    if bodyData == request.HTTPBody {
       return .Success(Box(value: incomingRequest))
     }
 
     let message = "HTTP body data not match" +
-        "\nExpected body data length: \(incomingRequest.HTTPBody?.length)" +
-        "\nActual body data length: \(request.HTTPBody?.length)"
+        "\nExpected body data length: \(request.HTTPBody?.length ?? 0)" +
+        "\nActual body data length: \(bodyData?.length ?? 0)"
     return .Failure(message)
   }
 }
@@ -159,6 +160,7 @@ extension VLRStubbedPair {
   */
   public func requestBodyData(data: NSData) -> Self {
     request.HTTPBody = data
+    request.HTTPHeaderFields["Content-Length"] = String(data.length)
     return self
   }
 }
