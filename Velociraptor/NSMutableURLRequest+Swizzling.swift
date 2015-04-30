@@ -8,7 +8,7 @@
 
 import Foundation
 
-let HTTPBodyDataKey = "HTTPBodyData"
+let HTTPBodyDataKey = "vlr_HTTPBodyData"
 
 extension NSMutableURLRequest {
   class func vlr_swizzleSetHTTPBody() {
