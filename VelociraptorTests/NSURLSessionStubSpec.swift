@@ -256,8 +256,6 @@ class NSURLSessionStubsSpec: QuickSpec {
       }
     }
     
-    
-    
     // MARK: - Stubs HTTP method
     describe("Stubs HTTP method") {
       
@@ -470,6 +468,42 @@ class NSURLSessionStubsSpec: QuickSpec {
         mutableRequest.allHTTPHeaderFields = ["Accept": "*", "Others": "Someothers"]
         
         let task = session.dataTaskWithRequest(mutableRequest) { (data, res, error) in
+          expectation.fulfill()
+          
+          let response = res as! NSHTTPURLResponse
+          
+          expect(data.length).to(equal(0))
+          expect(response).notTo(beNil())
+          expect(response.statusCode).to(equal(200))
+          expect(error).to(beNil())
+        }
+        
+        task.resume()
+        self.waitForExpectationsWithTimeout(1) { error in
+          if let error = error {
+            XCTFail(error.localizedDescription)
+          }
+        }
+      }
+    }
+    
+    // MARK: - Stubs HTTP body data
+    describe("Stubs HTTP body data") {
+      beforeEach {
+        config = NSURLSessionConfiguration.defaultSessionConfiguration()
+      }
+      
+      it("matches when HTTP body data is identical") {
+        let expectation = self.expectationWithDescription("HTTP body data stub")
+        let bodyData = "Hello world".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)!
+        let aRequest = request.mutableCopy() as! NSMutableURLRequest
+        Velociraptor.request(aRequest)?
+          .requestHTTPMethod(.POST)
+          .requestBodyData(bodyData)
+        
+        aRequest.HTTPBody = bodyData
+        aRequest.HTTPMethod = "POST"
+        let task = session.dataTaskWithRequest(aRequest) { (data, res, error) in
           expectation.fulfill()
           
           let response = res as! NSHTTPURLResponse
