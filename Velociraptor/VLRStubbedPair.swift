@@ -239,15 +239,27 @@ extension VLRStubbedPair {
     Specify the status code and/or error of the stubbed response.
   
     :param: statusCode The HTTP response status code. See http://tools.ietf.org/html/rfc7231#page-47
-    :param: error An optional error, default to `nil`. If provided, 
-            it will be sent with the response.
 
     :returns: The same object you used to specify stub information.
   */
-  public func responseStatusCode(statusCode: Int, failedWithError error: NSError? = nil) -> Self {
+  public func responseStatusCode(statusCode: Int) -> Self {
     response = response ?? defaultResponseWithURL(request.URL)
     
     response?.statusCode = statusCode
+    return self
+  }
+  
+  /**
+    Specify the error that completion handler received.
+  
+    :param: error The error that you will received in the completion handler.
+  
+    :returns: The same object you used to specify stub information.
+  
+  */
+  public func responseError(error: NSError) -> Self {
+    response = response ?? defaultResponseWithURL(request.URL)
+    
     response?.responseError = error
     return self
   }

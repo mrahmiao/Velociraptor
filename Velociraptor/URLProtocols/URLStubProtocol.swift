@@ -35,7 +35,16 @@ class URLStubProtocol: NSURLProtocol {
     if let stubbedResponse = VelociraptorManager.sharedManager.stubbedResponseWithURLRequest(request) {
       
       let response = NSHTTPURLResponse(stubbedResponse: stubbedResponse)
-      client!.URLProtocol(self, didReceiveResponse: response!, cacheStoragePolicy: .NotAllowed)
+      
+      if let error = stubbedResponse.responseError {
+        client!.URLProtocol(self, didFailWithError: error)
+      } else {
+        if let data = stubbedResponse.HTTPBody {
+          client!.URLProtocol(self, didLoadData: data)
+        }
+        client!.URLProtocol(self, didReceiveResponse: response!, cacheStoragePolicy: .NotAllowed)
+      }
+      
       client!.URLProtocolDidFinishLoading(self)
     } else {
       fatalError("Request not stubbed with URL: \(request.URL!)")
