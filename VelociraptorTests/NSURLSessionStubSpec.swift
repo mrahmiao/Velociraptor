@@ -594,6 +594,33 @@ class NSURLSessionStubsSpec: QuickSpec {
           }
         }
       }
+      
+      describe("with single stub methods") {
+        it("stubs single header value") {
+          let expectation = self.expectationWithDescription("single header value")
+          let headerValue = "application/x-velociraptor"
+          let headerField = "Content-Type"
+          Velociraptor.request(URL)?.responseHeaderValue(headerValue, forHTTPHeaderField: headerField)
+          
+          let task = session.dataTaskWithURL(URL) { (data, res, error) in
+            expectation.fulfill()
+            
+            let response = res as! NSHTTPURLResponse
+            
+            expect(response.allHeaderFields.count).to(equal(1))
+            expect((response.allHeaderFields[headerField] as! String)).to(equal(headerValue))
+          }
+          
+          task.resume()
+          self.waitForExpectationsWithTimeout(1) { error in
+            if let error = error {
+              XCTFail(error.localizedDescription)
+            }
+          }
+        }
+      }
     }
+    
+    
   }
 }
