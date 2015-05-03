@@ -596,8 +596,8 @@ class NSURLSessionStubsSpec: QuickSpec {
       }
       
       describe("with single stub methods") {
-        it("stubs single header value") {
-          let expectation = self.expectationWithDescription("single header value")
+        it("stubs a single header field") {
+          let expectation = self.expectationWithDescription("single header field")
           let headerValue = "application/x-velociraptor"
           let headerField = "Content-Type"
           Velociraptor.request(URL)?.responseHeaderValue(headerValue, forHTTPHeaderField: headerField)
@@ -609,6 +609,32 @@ class NSURLSessionStubsSpec: QuickSpec {
             
             expect(response.allHeaderFields.count).to(equal(1))
             expect((response.allHeaderFields[headerField] as! String)).to(equal(headerValue))
+          }
+          
+          task.resume()
+          self.waitForExpectationsWithTimeout(1) { error in
+            if let error = error {
+              XCTFail(error.localizedDescription)
+            }
+          }
+        }
+        
+        it("stubs multiple header fields") {
+          let expectation = self.expectationWithDescription("multiple header fields")
+          let headerFields = [
+            "Content-Type": "application/json",
+            "AuthKey": "Biu",
+            "Title": "Velociraptor"]
+          
+          Velociraptor.request(URL)?.responseHTTPHeaderFields(headerFields)
+          
+          let task = session.dataTaskWithURL(URL) { (data, res, error) in
+            expectation.fulfill()
+            
+            let response = res as! NSHTTPURLResponse
+            
+            expect(response.allHeaderFields.count).to(equal(3))
+            expect((response.allHeaderFields as! [String: String])).to(equal(headerFields))
           }
           
           task.resume()
