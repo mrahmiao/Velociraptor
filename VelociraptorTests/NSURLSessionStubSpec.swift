@@ -567,32 +567,6 @@ class NSURLSessionStubsSpec: QuickSpec {
             }
           }
         }
-        
-        it("stubs an error response") {
-          let expectation = self.expectationWithDescription("Stub error response")
-          
-          let errorCode = 1234
-          let userInfo = ["Error": "StubbedError"]
-          let domain = "com.code4blues.mrahmiao.velociraptor"
-          let stubbedError = NSError(domain: domain, code: errorCode, userInfo: userInfo)
-          
-          Velociraptor.request(URL)?.responseError(stubbedError)
-          
-          let task = session.dataTaskWithURL(URL) { (data ,res, receivedError) in
-            expectation.fulfill()
-            
-            expect(data.length).to(equal(0))
-            expect(res).to(beNil())
-            expect(receivedError).to(equal(stubbedError))
-          }
-          
-          task.resume()
-          self.waitForExpectationsWithTimeout(1) { error in
-            if let error = error {
-              XCTFail(error.localizedDescription)
-            }
-          }
-        }
       }
       
       describe("with single stub methods") {
@@ -666,6 +640,33 @@ class NSURLSessionStubsSpec: QuickSpec {
             }
           }
         }
+        
+        it("stubs an error response") {
+          let expectation = self.expectationWithDescription("Stub error response")
+          
+          let errorCode = 1234
+          let userInfo = ["Error": "StubbedError"]
+          let domain = "com.code4blues.mrahmiao.velociraptor"
+          let stubbedError = NSError(domain: domain, code: errorCode, userInfo: userInfo)
+          
+          Velociraptor.request(URL)?.failWithError(stubbedError)
+          
+          let task = session.dataTaskWithURL(URL) { (data ,res, receivedError) in
+            expectation.fulfill()
+            
+            expect(data.length).to(equal(0))
+            expect(res).to(beNil())
+            expect(receivedError).to(equal(stubbedError))
+          }
+          
+          task.resume()
+          self.waitForExpectationsWithTimeout(1) { error in
+            if let error = error {
+              XCTFail(error.localizedDescription)
+            }
+          }
+        }
+        
       }
     }
     

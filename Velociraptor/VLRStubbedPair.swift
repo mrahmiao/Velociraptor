@@ -257,7 +257,7 @@ extension VLRStubbedPair {
     :returns: The same object you used to specify stub information.
   
   */
-  public func responseError(error: NSError) -> Self {
+  public func failWithError(error: NSError) -> Self {
     response = response ?? defaultResponseWithURL(request.URL)
     
     response?.responseError = error
