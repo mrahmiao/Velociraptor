@@ -644,6 +644,28 @@ class NSURLSessionStubsSpec: QuickSpec {
             }
           }
         }
+        
+        it("stubs status code") {
+          let expectation = self.expectationWithDescription("stubs status code")
+          let statusCode = 301
+          
+          Velociraptor.request(URL)?.responseStatusCode(statusCode)
+          
+          let task = session.dataTaskWithURL(URL) { (data, res, error) in
+            expectation.fulfill()
+            
+            let response = res as! NSHTTPURLResponse
+            
+            expect(response.statusCode).to(equal(statusCode))
+          }
+          
+          task.resume()
+          self.waitForExpectationsWithTimeout(1) { error in
+            if let error = error {
+              XCTFail(error.localizedDescription)
+            }
+          }
+        }
       }
     }
     
