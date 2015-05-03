@@ -667,6 +667,42 @@ class NSURLSessionStubsSpec: QuickSpec {
           }
         }
         
+        it("stubs body data of response") {
+          
+          let bodyData = "Hello World".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!
+          
+          var receivedData: NSData! = nil
+          Velociraptor.request(URL)?.responseBodyData(bodyData)
+          
+          let task = session.dataTaskWithURL(URL) { (data, res, err) in
+            
+            receivedData = data
+          }
+          
+          task.resume()
+          expect(receivedData).toEventually(equal(bodyData))
+        }
+        
+        it("stubs JSON body data of response") {
+          let JSONObject: AnyObject = [
+            "Number": 5,
+            "Bool": false,
+            "Array": [5, 4, 3]
+          ]
+          
+          let JSONData = NSJSONSerialization.dataWithJSONObject(JSONObject, options: NSJSONWritingOptions.allZeros, error: nil)
+          
+          Velociraptor.request(URL)?.responseJSONData(JSONObject)
+          
+          var receivedData: NSData!
+          let task = session.dataTaskWithURL(URL) { (data, res, err) in
+            receivedData = data
+          }
+          
+          task.resume()
+          
+          expect(receivedData).toEventually(equal(JSONData))
+        }
       }
     }
     
