@@ -171,3 +171,20 @@ private func deactivateHTTPStubs() {
   NSMutableURLRequest.vlr_swizzleSetHTTPBody()
   NSURLProtocol.unregisterClass(URLStubProtocol.self)
 }
+
+// MARK: - Convenience methods
+
+/**
+
+Convenience method to stub GET requests.
+
+:param: URLRequest The convertible request object you use to stub the request.
+
+:returns: An object you used to specify more stubbed information.
+*/
+public func GET(URLRequest: VLRURLRequestConvertible) -> VLRStubbedPair? {
+  let pair = request(URLRequest)
+  pair?.request.HTTPMethod = .GET
+  
+  return pair
+}

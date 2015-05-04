@@ -147,6 +147,7 @@ class NSURLSessionStubsSpec: QuickSpec {
               }
             }
           }
+          
         }
         
         // MARK: under the ephemeral session configuration
@@ -252,7 +253,6 @@ class NSURLSessionStubsSpec: QuickSpec {
               }
             }
           }
-          
           
         }
       }
@@ -525,6 +525,7 @@ class NSURLSessionStubsSpec: QuickSpec {
       }
     }
     
+    // MARK: - Stubbing responses
     describe("Stubbing responses") {
       
       beforeEach {
@@ -706,6 +707,33 @@ class NSURLSessionStubsSpec: QuickSpec {
       }
     }
     
-    
+    // MARK: - Using convenience methods
+    describe("Using convenience methods") {
+      
+      beforeEach {
+        config = NSURLSessionConfiguration.defaultSessionConfiguration()
+      }
+      
+      it("stubs GET request and uses default response") {
+        let expectation = self.expectationWithDescription("Convenience GET method")
+        Velociraptor.GET(URL)
+        
+        let task = session.dataTaskWithURL(URL) { (data, res, err) in
+          expectation.fulfill()
+          let receivedRes = res as! NSHTTPURLResponse
+          expect(receivedRes.URL).to(equal(URL))
+          expect(receivedRes.statusCode).to(equal(200))
+        }
+        
+        task.resume()
+        self.waitForExpectationsWithTimeout(1) { error in
+          if let error = error {
+            XCTFail(error.localizedDescription)
+          }
+        }
+      }
+      
+      
+    }
   }
 }
