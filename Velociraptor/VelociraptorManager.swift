@@ -91,7 +91,8 @@ extension VelociraptorManager {
       ]
       
       for pair in pairs {
-        if pair.matchesRequest(request, usingMatchers: matchers) {
+        let matcher = RequestMatcher(incomingRequest: request, stubbedRequest: pair.request, matchers: matchers)
+        if matcher.matches() {
           return pair.response
         }
       }

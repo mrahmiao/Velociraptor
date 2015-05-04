@@ -46,30 +46,6 @@ extension VLRStubbedPair: DebugPrintable {
   }
 }
 
-// MARK: - Request Match Methods
-extension VLRStubbedPair {
-  func matchesRequest(incomingRequest: NSURLRequest, usingMatchers matchers: [RequestMatchable]) -> Bool {
-    
-    let initial = MatchResult<NSURLRequest>.Success(Box(value: incomingRequest))
-    let matchingResult = matchers.reduce(initial) { (result, matcher) -> MatchResult<NSURLRequest> in
-      
-      let closure = { (request) -> MatchResult<NSURLRequest> in
-        return matcher.incomingRequest(request, matchesStubbedRequest: self.request)
-      }
-      
-      return result.check(closure)
-    }
-
-    switch matchingResult {
-    case .Success(_):
-      return true
-    case .Failure(let errorMessage):
-      NSLog("\(errorMessage)")
-      return false
-    }
-  }
-}
-
 // MARK: - Request DSL
 extension VLRStubbedPair {
   /**
