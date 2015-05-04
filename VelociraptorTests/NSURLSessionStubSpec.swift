@@ -37,7 +37,6 @@ class NSURLSessionStubsSpec: QuickSpec {
     afterEach {
       config = nil
       session = nil
-      Velociraptor.clearStubs()
     }
     
     describe("Stubbing requests") {

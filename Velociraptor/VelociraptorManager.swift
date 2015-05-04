@@ -61,6 +61,9 @@ extension VelociraptorManager {
     :returns: An object you used to specify more stubbed information.
   */
   public func request(stubbedRequest: VLRStubbedRequest) -> VLRStubbedPair? {
+    
+    resetStubs()
+    
     var stubbedResponse: VLRStubbedResponse? = nil
     
     if enableDefaultResponse {
@@ -76,19 +79,19 @@ extension VelociraptorManager {
     Clear stubbed requests. The method should be invoked after each
     test case.
   */
-  public func clearStubs() {
+  func resetStubs() {
+    matchers = [
+      URLMatcher(),
+      HTTPMethodMatcher(),
+      HeaderFieldMatcher(option: headerFieldMatchingOption),
+      BodyDataMatcher()
+    ]
+    
     pairs.removeAll(keepCapacity: false)
   }
   
   func stubbedResponseWithURLRequest(URLRequest: VLRURLRequestConvertible) -> VLRStubbedResponse? {
     if let request = URLRequest.URLRequest {
-      
-      matchers = [
-        URLMatcher(),
-        HTTPMethodMatcher(),
-        HeaderFieldMatcher(option: headerFieldMatchingOption),
-        BodyDataMatcher()
-      ]
       
       for pair in pairs {
         let matcher = RequestMatcher(incomingRequest: request, stubbedRequest: pair.request, matchers: matchers)
@@ -128,15 +131,6 @@ public func request(URLRequest: VLRURLRequestConvertible) -> VLRStubbedPair? {
 public func request(stubbedRequest: VLRStubbedRequest) -> VLRStubbedPair? {
   return VelociraptorManager.sharedManager.request(stubbedRequest)
 }
-
-/**
-  Clear stubbed requests. The method should be invoked after each
-  test case.
-*/
-public func clearStubs() {
-  VelociraptorManager.sharedManager.clearStubs()
-}
-
 
 /// Activate Velociraptor to stub requests.
 public func activate() {
