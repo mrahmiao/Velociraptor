@@ -798,6 +798,28 @@ class NSURLSessionStubsSpec: QuickSpec {
           }
         }
       }
+      
+      it("stubs PATCH request and uses default response") {
+        let expectation = self.expectationWithDescription("Convenience PATCH method")
+        Velociraptor.PATCH(URL)
+        
+        let mutableRequest = request.mutableCopy() as! NSMutableURLRequest
+        mutableRequest.HTTPMethod = VLRHTTPMethod.PATCH.rawValue
+        
+        let task = session.dataTaskWithRequest(mutableRequest) { (data, res, err) in
+          expectation.fulfill()
+          let receivedRes = res as! NSHTTPURLResponse
+          expect(receivedRes.URL).to(equal(URL))
+          expect(receivedRes.statusCode).to(equal(200))
+        }
+        
+        task.resume()
+        self.waitForExpectationsWithTimeout(1) { error in
+          if let error = error {
+            XCTFail(error.localizedDescription)
+          }
+        }
+      }
 
       
     }

@@ -229,3 +229,17 @@ public func DELETE(URLRequest: VLRURLRequestConvertible) -> VLRStubbedPair? {
   
   return pair
 }
+
+/**
+  Convenience method to stub `PATCH` requests.
+
+  :param: URLRequest The convertible request object you use to stub the request.
+
+  :returns: An object you used to specify more stubbed information.
+*/
+public func PATCH(URLRequest: VLRURLRequestConvertible) -> VLRStubbedPair? {
+  let pair = request(URLRequest)
+  pair?.request.HTTPMethod = .PATCH
+  
+  return pair
+}
