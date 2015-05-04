@@ -16,6 +16,8 @@ import Foundation
 public class VelociraptorManager {
   private var pairs: [VLRStubbedPair] = []
   
+  private var matchers: [RequestMatcher]!
+  
   /// Whether to provied default stubbed response. `true` by default.
   public var enableDefaultResponse = true
   
@@ -65,7 +67,7 @@ extension VelociraptorManager {
       stubbedResponse = VLRStubbedResponse(URL: stubbedRequest.URL)
     }
     
-    let pair = VLRStubbedPair(request: stubbedRequest, response: stubbedResponse, matchingOption: headerFieldMatchingOption)
+    let pair = VLRStubbedPair(request: stubbedRequest, response: stubbedResponse)
     pairs.append(pair)
     return pair
   }
@@ -80,8 +82,16 @@ extension VelociraptorManager {
   
   func stubbedResponseWithURLRequest(URLRequest: VLRURLRequestConvertible) -> VLRStubbedResponse? {
     if let request = URLRequest.URLRequest {
+      
+      matchers = [
+        URLMatcher(),
+        HTTPMethodMatcher(),
+        HeaderFieldMatcher(option: headerFieldMatchingOption),
+        BodyDataMatcher()
+      ]
+      
       for pair in pairs {
-        if pair.matchesRequest(request) {
+        if pair.matchesRequest(request, usingMatchers: matchers) {
           return pair.response
         }
       }

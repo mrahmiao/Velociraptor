@@ -20,13 +20,9 @@ public class VLRStubbedPair {
   /// Stubbed resposne information
   var response: VLRStubbedResponse?
   
-  /// Option to control behavior of HTTP header fields matching
-  private let headerFieldMatchingOption: VLRHeaderFieldMatchingOptions
-  
-  init(request: VLRStubbedRequest, response: VLRStubbedResponse? = nil, matchingOption: VLRHeaderFieldMatchingOptions) {
+  init(request: VLRStubbedRequest, response: VLRStubbedResponse? = nil) {
     self.request = request
     self.response = response
-    self.headerFieldMatchingOption = matchingOption
   }
 }
 
@@ -52,62 +48,25 @@ extension VLRStubbedPair: DebugPrintable {
 
 // MARK: - Request Match Methods
 extension VLRStubbedPair {
-  func matchesRequest(incomingRequest: NSURLRequest) -> Bool {
-    let result = MatchResult<NSURLRequest>.Success(Box(value: incomingRequest))
-        .check(matchesURLWithRequest)
-        .check(matchesHTTPMethodWithRequest)
-        .check(matchesHeaderFieldsWithRequest)
-        .check(matchesHTTPBodyDataWithRequest)
+  func matchesRequest(incomingRequest: NSURLRequest, usingMatchers matchers: [RequestMatcher]) -> Bool {
+    
+    let initial = MatchResult<NSURLRequest>.Success(Box(value: incomingRequest))
+    let matchingResult = matchers.reduce(initial) { (result, matcher) -> MatchResult<NSURLRequest> in
+      
+      let closure = { (request) -> MatchResult<NSURLRequest> in
+        return matcher.incomingRequest(request, matchesStubbedRequest: self.request)
+      }
+      
+      return result.check(closure)
+    }
 
-    switch result {
+    switch matchingResult {
     case .Success(_):
       return true
     case .Failure(let errorMessage):
       NSLog("\(errorMessage)")
       return false
     }
-  }
-
-  private func matchesURLWithRequest(incomingRequest: NSURLRequest) -> MatchResult<NSURLRequest> {
-    if incomingRequest.URL?.absoluteString == request.URL {
-        return .Success(Box(value: incomingRequest))
-    }
-
-    return .Failure("URL not match: expected \(request.URL), got \(incomingRequest.URL?.absoluteString)")
-  }
-
-  private func matchesHTTPMethodWithRequest(incomingRequest: NSURLRequest) -> MatchResult<NSURLRequest> {
-    if request.HTTPMethod.matchesIncomingHTTPMethod(incomingRequest.HTTPMethod) {
-      return .Success(Box(value: incomingRequest))
-    }
-
-    return .Failure("HTTP Method not match: expected \(request.HTTPMethod.rawValue), got \(incomingRequest.HTTPMethod!)")
-  }
-
-  private func matchesHeaderFieldsWithRequest(incomingRequest: NSURLRequest) -> MatchResult<NSURLRequest> {
-    let incomingHeaderFields = incomingRequest.allHTTPHeaderFields ?? [:]
-    let matched = headerFieldMatchingOption.incomingHeaderFields(incomingHeaderFields, matchesStubbedHeaderFields: request.HTTPHeaderFields)
-    
-    if matched {
-      return .Success(Box(value: incomingRequest))
-    }
-    
-    let message = "Header fields not match with matching option: \(headerFieldMatchingOption)." +
-        "\nExpected header fields: \(request.HTTPHeaderFields)" +
-        "\nActual header fields: \(incomingHeaderFields)"
-    return .Failure(message)
-  }
-
-  private func matchesHTTPBodyDataWithRequest(incomingRequest: NSURLRequest) -> MatchResult<NSURLRequest> {
-    let bodyData = NSURLProtocol.propertyForKey(HTTPBodyDataKey, inRequest: incomingRequest) as? NSData
-    if bodyData == request.HTTPBody {
-      return .Success(Box(value: incomingRequest))
-    }
-
-    let message = "HTTP body data not match" +
-        "\nExpected body data length: \(request.HTTPBody?.length ?? 0)" +
-        "\nActual body data length: \(bodyData?.length ?? 0)"
-    return .Failure(message)
   }
 }
 
