@@ -175,16 +175,45 @@ private func deactivateHTTPStubs() {
 // MARK: - Convenience methods
 
 /**
+  Convenience method to stub GET requests.
 
-Convenience method to stub GET requests.
+  :param: URLRequest The convertible request object you use to stub the request.
+
+  :returns: An object you used to specify more stubbed information.
+*/
+public func GET(URLRequest: VLRURLRequestConvertible) -> VLRStubbedPair? {
+  let pair = request(URLRequest)
+  pair?.request.HTTPMethod = .GET
+  
+  return pair
+}
+
+/**
+
+  Convenience method to stub POST requests.
+
+  :param: URLRequest The convertible request object you use to stub the request.
+
+  :returns: An object you used to specify more stubbed information.
+*/
+public func POST(URLRequest: VLRURLRequestConvertible) -> VLRStubbedPair? {
+  let pair = request(URLRequest)
+  pair?.request.HTTPMethod = .POST
+  
+  return pair
+}
+
+/**
+
+Convenience method to stub PUT requests.
 
 :param: URLRequest The convertible request object you use to stub the request.
 
 :returns: An object you used to specify more stubbed information.
 */
-public func GET(URLRequest: VLRURLRequestConvertible) -> VLRStubbedPair? {
+public func PUT(URLRequest: VLRURLRequestConvertible) -> VLRStubbedPair? {
   let pair = request(URLRequest)
-  pair?.request.HTTPMethod = .GET
+  pair?.request.HTTPMethod = .PUT
   
   return pair
 }

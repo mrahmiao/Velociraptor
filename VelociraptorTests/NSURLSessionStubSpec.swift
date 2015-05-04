@@ -733,6 +733,50 @@ class NSURLSessionStubsSpec: QuickSpec {
         }
       }
       
+      it("stubs POST request and uses default response") {
+        let expectation = self.expectationWithDescription("Convenience POST method")
+        Velociraptor.POST(URL)
+        
+        let mutableRequest = request.mutableCopy() as! NSMutableURLRequest
+        mutableRequest.HTTPMethod = VLRHTTPMethod.POST.rawValue
+        
+        let task = session.dataTaskWithRequest(mutableRequest) { (data, res, err) in
+          expectation.fulfill()
+          let receivedRes = res as! NSHTTPURLResponse
+          expect(receivedRes.URL).to(equal(URL))
+          expect(receivedRes.statusCode).to(equal(200))
+        }
+        
+        task.resume()
+        self.waitForExpectationsWithTimeout(1) { error in
+          if let error = error {
+            XCTFail(error.localizedDescription)
+          }
+        }
+      }
+      
+      it("stubs PUT request and uses default response") {
+        let expectation = self.expectationWithDescription("Convenience PUT method")
+        Velociraptor.PUT(URL)
+        
+        let mutableRequest = request.mutableCopy() as! NSMutableURLRequest
+        mutableRequest.HTTPMethod = VLRHTTPMethod.PUT.rawValue
+        
+        let task = session.dataTaskWithRequest(mutableRequest) { (data, res, err) in
+          expectation.fulfill()
+          let receivedRes = res as! NSHTTPURLResponse
+          expect(receivedRes.URL).to(equal(URL))
+          expect(receivedRes.statusCode).to(equal(200))
+        }
+        
+        task.resume()
+        self.waitForExpectationsWithTimeout(1) { error in
+          if let error = error {
+            XCTFail(error.localizedDescription)
+          }
+        }
+      }
+
       
     }
   }
