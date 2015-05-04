@@ -8,7 +8,7 @@
 
 import Foundation
 
-class HeaderFieldMatcher: RequestMatcher {
+class HeaderFieldMatcher: RequestMatchable {
   
   private var matchingOption: VLRHeaderFieldMatchingOptions
   

@@ -8,7 +8,7 @@
 
 import Foundation
 
-class HTTPMethodMatcher: RequestMatcher {
+class HTTPMethodMatcher: RequestMatchable {
   
   func incomingRequest(request: NSURLRequest, matchesStubbedRequest stubbedRequest: VLRStubbedRequest) -> MatchResult<NSURLRequest> {
     

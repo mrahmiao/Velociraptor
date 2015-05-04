@@ -8,7 +8,7 @@
 
 import Foundation
 
-class BodyDataMatcher: RequestMatcher {
+class BodyDataMatcher: RequestMatchable {
   func incomingRequest(request: NSURLRequest, matchesStubbedRequest stubbedRequest: VLRStubbedRequest) -> MatchResult<NSURLRequest> {
     let bodyData = NSURLProtocol.propertyForKey(HTTPBodyDataKey, inRequest: request) as? NSData
     if bodyData == stubbedRequest.HTTPBody {

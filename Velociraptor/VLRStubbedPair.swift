@@ -48,7 +48,7 @@ extension VLRStubbedPair: DebugPrintable {
 
 // MARK: - Request Match Methods
 extension VLRStubbedPair {
-  func matchesRequest(incomingRequest: NSURLRequest, usingMatchers matchers: [RequestMatcher]) -> Bool {
+  func matchesRequest(incomingRequest: NSURLRequest, usingMatchers matchers: [RequestMatchable]) -> Bool {
     
     let initial = MatchResult<NSURLRequest>.Success(Box(value: incomingRequest))
     let matchingResult = matchers.reduce(initial) { (result, matcher) -> MatchResult<NSURLRequest> in

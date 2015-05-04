@@ -16,7 +16,7 @@ import Foundation
 public class VelociraptorManager {
   private var pairs: [VLRStubbedPair] = []
   
-  private var matchers: [RequestMatcher]!
+  private var matchers: [RequestMatchable]!
   
   /// Whether to provied default stubbed response. `true` by default.
   public var enableDefaultResponse = true

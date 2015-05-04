@@ -8,7 +8,7 @@
 
 import Foundation
 
-class URLMatcher: RequestMatcher {
+class URLMatcher: RequestMatchable {
   func incomingRequest(request: NSURLRequest, matchesStubbedRequest stubbedRequest: VLRStubbedRequest) -> MatchResult<NSURLRequest> {
     if request.URL?.absoluteString == stubbedRequest.URL {
       return .Success(Box(value: request))

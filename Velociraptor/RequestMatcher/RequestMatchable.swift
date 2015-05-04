@@ -1,5 +1,5 @@
 //
-//  RequestMatcher.swift
+//  RequestMatchable.swift
 //  Velociraptor
 //
 //  Created by mrahmiao on 5/4/15.
@@ -9,9 +9,9 @@
 import Foundation
 
 /**
-  This `RequestMatcher` protocol defines a method that objects can implement to match requests.
+  This `RequestMatchable` protocol defines a method that objects can implement to match requests.
 */
-protocol RequestMatcher {
+protocol RequestMatchable {
   
   /**
     Checks whether the incoming request matches the stubbed request.
