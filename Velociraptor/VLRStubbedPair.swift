@@ -118,7 +118,7 @@ extension VLRStubbedPair {
   
     :param: method HTTP method, see http://tools.ietf.org/html/rfc7231#section-4.3
   
-    :returns: The same object you used to specify stub information.
+    :returns: An object you used to specify more stubbed information.
   */
   public func requestHTTPMethod(method: VLRHTTPMethod) -> Self {
     request.HTTPMethod = method
@@ -131,7 +131,7 @@ extension VLRStubbedPair {
     :param: value The value of the header field.
     :param: field The name of the header field. In keeping with the HTTP RFC, HTTP header field names are case-insensitive. The value of the same header field will be replaced while the name of the header field will be remained (ignoring the new name of the header field).
   
-    :returns: The same object you used to specify stub information.
+    :returns: An object you used to specify more stubbed information.
   */
   public func requestHeaderValue(value: String, forHTTPHeaderField field: String) -> Self {
     
@@ -144,7 +144,7 @@ extension VLRStubbedPair {
   
     :param: headers The HTTP header fields.
   
-    :returns: The same object you used to specify stub information.
+    :returns: An object you used to specify more stubbed information.
   */
   public func requestHTTPHeaderFields(headers: [String: String]) -> Self {
     request.HTTPHeaderFields = headers
@@ -156,7 +156,7 @@ extension VLRStubbedPair {
   
     :param: data The stubbed HTTP body data.
   
-    :returns: The same object you used to specify stub information.
+    :returns: An object you used to specify more stubbed information.
   */
   public func requestBodyData(data: NSData) -> Self {
     request.HTTPBody = data
@@ -176,7 +176,7 @@ extension VLRStubbedPair {
   
     :param: parameters The parameters attched to the stubbed request.
   
-    :returns: The same object you used to specify stub information.
+    :returns: An object you used to specify more stubbed information.
   */
   private func requestParameters(parameters: [String: AnyObject]) -> Self {
     switch request.HTTPMethod {
@@ -197,7 +197,7 @@ extension VLRStubbedPair {
   
     :param: response An object contains all the stubbed response information.
   
-    :returns: An object you used to specify stub information.
+    :returns: An object you used to specify more stubbed information.
   */
   public func response(response: VLRStubbedResponse) -> Self {
     self.response = response
@@ -210,7 +210,7 @@ extension VLRStubbedPair {
     :param: value The value of the header field.
     :param: field The name of the header field. In keeping with the HTTP RFC, HTTP header field names are case-insensitive. The value of the same header field will be replaced while the name of the header field will be remained (ignoring the new name of the header field).
   
-    :returns: The same object you used to specify stub information.
+    :returns: An object you used to specify more stubbed information.
   */
   public func responseHeaderValue(value: String, forHTTPHeaderField field: String) -> Self {
     
@@ -226,7 +226,7 @@ extension VLRStubbedPair {
   
     :param: headers The HTTP header fields.
   
-    :returns: The same object you used to specify stub information.
+    :returns: An object you used to specify more stubbed information.
   */
   public func responseHTTPHeaderFields(headers: [String: String]) -> Self {
     response = response ?? defaultResponseWithURL(request.URL)
@@ -240,7 +240,7 @@ extension VLRStubbedPair {
   
     :param: statusCode The HTTP response status code. See http://tools.ietf.org/html/rfc7231#page-47
 
-    :returns: The same object you used to specify stub information.
+    :returns: An object you used to specify more stubbed information.
   */
   public func responseStatusCode(statusCode: Int) -> Self {
     response = response ?? defaultResponseWithURL(request.URL)
@@ -254,7 +254,7 @@ extension VLRStubbedPair {
   
     :param: error The error that you will received in the completion handler.
   
-    :returns: The same object you used to specify stub information.
+    :returns: An object you used to specify more stubbed information.
   
   */
   public func failWithError(error: NSError) -> Self {
@@ -269,7 +269,7 @@ extension VLRStubbedPair {
   
     :param: data The HTTP body data you want to stubbed.
   
-    :returns: The same object you used to specify stub information.
+    :returns: An object you used to specify more stubbed information.
   */
   public func responseBodyData(data: NSData) -> Self {
     response = response ?? defaultResponseWithURL(request.URL)
@@ -285,7 +285,7 @@ extension VLRStubbedPair {
   
     :param: data The JSON object that will be stubbed as the response data.
 
-    :returns: The same object you used to specify stub information.
+    :returns: An object you used to specify more stubbed information.
   */
   public func responseJSONData(data: AnyObject) -> Self {
     response = response ?? defaultResponseWithURL(request.URL)

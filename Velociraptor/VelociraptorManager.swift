@@ -38,9 +38,9 @@ extension VelociraptorManager {
     Stub a request using system provided network-related classes, such as 
     String, NSURL and NSURLRequest.
   
-    :param: URLRequest The request you want to stub
+    :param: URLRequest The convertible request object you use to stub the request.
   
-    :returns: A stub object for you to add more detailed information.
+    :returns: An object you used to specify more stubbed information.
   */
   public func request(URLRequest: VLRURLRequestConvertible) -> VLRStubbedPair? {
     if let request = URLRequest.URLRequest {
@@ -56,7 +56,7 @@ extension VelociraptorManager {
   
     :param: stubbedRequest The stubbed request you want to stub
   
-    :returns: A stub object for you to add more detailed information.
+    :returns: An object you used to specify more stubbed information.
   */
   public func request(stubbedRequest: VLRStubbedRequest) -> VLRStubbedPair? {
     var stubbedResponse: VLRStubbedResponse? = nil
@@ -98,12 +98,12 @@ extension VelociraptorManager {
   Top-level function to stub a request using system provided network-related
   classes, such as String, NSURL and NSURLRequest.
 
-  :param: URLRequest The request you want to stub
+  :param: URLRequest The convertible request object you use to stub the request.
 
-  :returns: A stub object for you to add more detailed information.
+  :returns: An object you used to specify more stubbed information.
 */
-public func request(URL: VLRURLRequestConvertible) -> VLRStubbedPair? {
-  return VelociraptorManager.sharedManager.request(URL)
+public func request(URLRequest: VLRURLRequestConvertible) -> VLRStubbedPair? {
+  return VelociraptorManager.sharedManager.request(URLRequest)
 }
 
 /**
@@ -112,7 +112,7 @@ public func request(URL: VLRURLRequestConvertible) -> VLRStubbedPair? {
 
   :param: stubbedRequest The stubbed request you want to stub
 
-  :returns: A stub object for you to add more detailed information.
+  :returns: An object you used to specify more stubbed information.
 */
 public func request(stubbedRequest: VLRStubbedRequest) -> VLRStubbedPair? {
   return VelociraptorManager.sharedManager.request(stubbedRequest)
