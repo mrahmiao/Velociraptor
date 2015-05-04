@@ -695,13 +695,18 @@ class NSURLSessionStubsSpec: QuickSpec {
           Velociraptor.request(URL)?.responseJSONData(JSONObject)
           
           var receivedData: NSData!
+          var receivedRes: NSHTTPURLResponse!
           let task = session.dataTaskWithURL(URL) { (data, res, err) in
             receivedData = data
+            receivedRes = res as! NSHTTPURLResponse
           }
           
           task.resume()
           
           expect(receivedData).toEventually(equal(JSONData))
+          expect(receivedRes.allHeaderFields.count).toEventually(equal(2))
+          expect((receivedRes.allHeaderFields["Content-Type"] as! String)).toEventually(equal("application/json; charset=utf-8"))
+          expect((receivedRes.allHeaderFields["Content-Length"] as! String)).toEventually(equal(String(JSONData!.length)))
         }
       }
     }

@@ -210,6 +210,7 @@ extension VLRStubbedPair {
     response = response ?? defaultResponseWithURL(request.URL)
     
     response?.HTTPBody = data
+    responseHeaderValue("\(data.length)", forHTTPHeaderField: "Content-Length")
     return self
   }
   
@@ -225,9 +226,10 @@ extension VLRStubbedPair {
   public func responseJSONData(data: AnyObject) -> Self {
     response = response ?? defaultResponseWithURL(request.URL)
     
-    responseHeaderValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
-    let data = NSJSONSerialization.dataWithJSONObject(data, options: NSJSONWritingOptions.allZeros, error: nil)
-    response?.HTTPBody = data
+    if let JSONData = NSJSONSerialization.dataWithJSONObject(data, options: NSJSONWritingOptions.allZeros, error: nil) {
+      responseHeaderValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+      responseBodyData(JSONData)
+    }
     
     return self
   }
