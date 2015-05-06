@@ -16,6 +16,33 @@ class SimpleRequestsWithDefaultSessionConfigurationTests: NSURLSessionStubsTestC
     config = NSURLSessionConfiguration.defaultSessionConfiguration()
   }
   
+  func testStubURLStringAndReceiveDefaultResponse() {
+    let expectation = expectationWithDescription("URLString")
+    
+    Velociraptor.request(URLString)
+    
+    let url = NSURL(string: URLString)!
+    
+    let task = session.dataTaskWithURL(url) { (data, res, error) in
+      expectation.fulfill()
+      
+      XCTAssertEqual(data.length, 0, "The length of data should equal to 0, got \(data.length)")
+      XCTAssertNotNil(res, "Default response should not be nil")
+      XCTAssertNil(error, "Should not receive an error")
+      
+      let response = res as! NSHTTPURLResponse
+      
+      XCTAssertEqual(response.statusCode, 200, "Default status code should equal to 200, got \(response.statusCode)")
+    }
+    
+    task.resume()
+    self.waitForExpectationsWithTimeout(1) { error in
+      if let error = error {
+        XCTFail(error.localizedDescription)
+      }
+    }
+  }
+  
   
   
 }
