@@ -16,17 +16,17 @@ class OptionPartiallyTenTests: OptionTestCase {
     matches = matchingOption(.Partially(10), withStubbedHeaderFields: stubbedHeaders)
   }
   
-  func testMatchesIdenticalHeaderFields() {
+  func testMatchIdenticalHeaderFields() {
     matchingResult = matches(sameHeaders)
     XCTAssertTrue(matchingResult!, "Matching result should be true, got \(matchingResult)")
   }
   
-  func testMatchesIdenticalHeaderFieldsWithLowercaseNames() {
+  func testMatchIdenticalHeaderFieldsWithLowercaseNames() {
     matchingResult = matches(lowercaseSameHeaders)
     XCTAssertTrue(matchingResult!, "Matching result should be true, got \(matchingResult)")
   }
   
-  func testMatchesSuperSetHeaderFields() {
+  func testMatchSuperSetHeaderFields() {
     matchingResult = matches(supersetHeaders)
     XCTAssertTrue(matchingResult!, "Matching result should be true, got \(matchingResult)")
   }

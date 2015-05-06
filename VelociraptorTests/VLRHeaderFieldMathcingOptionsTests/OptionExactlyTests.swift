@@ -26,7 +26,7 @@ class OptionExactlyTests: OptionTestCase {
     XCTAssertTrue(matchingResult!, "Matching result should be true, got \(matchingResult)")
   }
   
-  func testMatchingSameHeaderFieldValuesWithLowercaseHeaderFieldNames() {
+  func testMatchSameHeaderFieldValuesWithLowercaseHeaderFieldNames() {
     matchingResult = matches(lowercaseSameHeaders)
     XCTAssertTrue(matchingResult!, "Matching result should be true, got \(matchingResult)")
   }

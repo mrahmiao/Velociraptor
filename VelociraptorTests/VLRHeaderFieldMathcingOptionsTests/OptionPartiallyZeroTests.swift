@@ -11,7 +11,7 @@ import XCTest
 
 class OptionPartiallyZeroTests: OptionTestCase {
   
-  func testPartiallyZeroMatchesArbitraryHeaderFields() {
+  func testMatchArbitraryHeaderFields() {
     matches = matchingOption(.Partially(0), withStubbedHeaderFields: stubbedHeaders)
     matches = self.matchingOption(.Partially(0), withStubbedHeaderFields: stubbedHeaders)
     let headers = [
