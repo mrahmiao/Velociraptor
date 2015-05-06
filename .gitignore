@@ -1,5 +1,15 @@
 # Created by https://www.gitignore.io
 
+### Vim ###
+
+*swp
+
+### AppCode ###
+.idea/
+
+### CocoaPods ###
+Pods/
+
 ### Xcode ###
 build/
 *.pbxuser
@@ -85,3 +95,4 @@ Temporary Items
 # Carthage - A simple, decentralized dependency manager for Cocoa
 Carthage.checkout
 Carthage.build
+Carthage/
