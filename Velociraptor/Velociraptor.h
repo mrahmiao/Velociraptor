@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Code4Blues. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
 //! Project version number for Velociraptor.
 FOUNDATION_EXPORT double VelociraptorVersionNumber;
