@@ -240,9 +240,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		4FA9BB081AE5354700C94243 /* Velociraptor */ = {
+		4FA9BB081AE5354700C94243 /* Velociraptor iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4FA9BB1F1AE5354700C94243 /* Build configuration list for PBXNativeTarget "Velociraptor" */;
+			buildConfigurationList = 4FA9BB1F1AE5354700C94243 /* Build configuration list for PBXNativeTarget "Velociraptor iOS" */;
 			buildPhases = (
 				4FA9BB041AE5354700C94243 /* Sources */,
 				4FA9BB051AE5354700C94243 /* Frameworks */,
@@ -253,14 +253,14 @@
 			);
 			dependencies = (
 			);
-			name = Velociraptor;
+			name = "Velociraptor iOS";
 			productName = Velociraptor;
 			productReference = 4FA9BB091AE5354700C94243 /* Velociraptor.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		4FA9BB131AE5354700C94243 /* VelociraptorTests */ = {
+		4FA9BB131AE5354700C94243 /* Velociraptor iOS Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4FA9BB221AE5354700C94243 /* Build configuration list for PBXNativeTarget "VelociraptorTests" */;
+			buildConfigurationList = 4FA9BB221AE5354700C94243 /* Build configuration list for PBXNativeTarget "Velociraptor iOS Tests" */;
 			buildPhases = (
 				4FA9BB101AE5354700C94243 /* Sources */,
 				4FA9BB111AE5354700C94243 /* Frameworks */,
@@ -272,7 +272,7 @@
 			dependencies = (
 				4FA9BB171AE5354700C94243 /* PBXTargetDependency */,
 			);
-			name = VelociraptorTests;
+			name = "Velociraptor iOS Tests";
 			productName = VelociraptorTests;
 			productReference = 4FA9BB141AE5354700C94243 /* VelociraptorTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -306,8 +306,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				4FA9BB081AE5354700C94243 /* Velociraptor */,
-				4FA9BB131AE5354700C94243 /* VelociraptorTests */,
+				4FA9BB081AE5354700C94243 /* Velociraptor iOS */,
+				4FA9BB131AE5354700C94243 /* Velociraptor iOS Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -372,7 +372,7 @@
 /* Begin PBXTargetDependency section */
 		4FA9BB171AE5354700C94243 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 4FA9BB081AE5354700C94243 /* Velociraptor */;
+			target = 4FA9BB081AE5354700C94243 /* Velociraptor iOS */;
 			targetProxy = 4FA9BB161AE5354700C94243 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -479,7 +479,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Velociraptor;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -497,7 +497,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Velociraptor;
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
@@ -546,7 +546,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4FA9BB1F1AE5354700C94243 /* Build configuration list for PBXNativeTarget "Velociraptor" */ = {
+		4FA9BB1F1AE5354700C94243 /* Build configuration list for PBXNativeTarget "Velociraptor iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4FA9BB201AE5354700C94243 /* Debug */,
@@ -555,7 +555,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4FA9BB221AE5354700C94243 /* Build configuration list for PBXNativeTarget "VelociraptorTests" */ = {
+		4FA9BB221AE5354700C94243 /* Build configuration list for PBXNativeTarget "Velociraptor iOS Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4FA9BB231AE5354700C94243 /* Debug */,
