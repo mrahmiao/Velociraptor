@@ -45,14 +45,12 @@
 		4F4C785D1AF9CEE500FD1708 /* VLRStubbedResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF28D7B1AE8C714008CC328 /* VLRStubbedResponse.swift */; };
 		4F4C785E1AF9CF0300FD1708 /* VLRHeaderFieldMatchingOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA056C81AEE11D90053A4DE /* VLRHeaderFieldMatchingOptions.swift */; };
 		4F4C785F1AF9CF0300FD1708 /* NSURLSessionStubSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEADA281AE87E4400CD344B /* NSURLSessionStubSpec.swift */; };
-		4F4C78601AF9CF0300FD1708 /* VLRHeaderFieldMatchingOptionsSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA056CB1AEEF33D0053A4DE /* VLRHeaderFieldMatchingOptionsSpec.swift */; };
 		4F4C78631AF9CF1900FD1708 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F4C78611AF9CF1900FD1708 /* Nimble.framework */; };
 		4F4C78641AF9CF1900FD1708 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F4C78621AF9CF1900FD1708 /* Quick.framework */; };
 		4F4C78661AF9CF2B00FD1708 /* Nimble.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4F4C78611AF9CF1900FD1708 /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4F4C78671AF9CF2B00FD1708 /* Quick.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4F4C78621AF9CF1900FD1708 /* Quick.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4F841EEA1AF1C21100022AAD /* NSMutableURLRequest+Swizzling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F841EE91AF1C21100022AAD /* NSMutableURLRequest+Swizzling.swift */; };
 		4FA056C91AEE11D90053A4DE /* VLRHeaderFieldMatchingOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA056C81AEE11D90053A4DE /* VLRHeaderFieldMatchingOptions.swift */; };
-		4FA056CC1AEEF33D0053A4DE /* VLRHeaderFieldMatchingOptionsSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA056CB1AEEF33D0053A4DE /* VLRHeaderFieldMatchingOptionsSpec.swift */; };
 		4FA9BB0F1AE5354700C94243 /* Velociraptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 4FA9BB0E1AE5354700C94243 /* Velociraptor.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4FA9BB151AE5354700C94243 /* Velociraptor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FA9BB091AE5354700C94243 /* Velociraptor.framework */; };
 		4FA9BB271AE5DB1300C94243 /* VelociraptorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA9BB261AE5DB1300C94243 /* VelociraptorManager.swift */; };
@@ -137,7 +135,6 @@
 		4F4C78621AF9CF1900FD1708 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/Mac/Quick.framework; sourceTree = "<group>"; };
 		4F841EE91AF1C21100022AAD /* NSMutableURLRequest+Swizzling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSMutableURLRequest+Swizzling.swift"; sourceTree = "<group>"; };
 		4FA056C81AEE11D90053A4DE /* VLRHeaderFieldMatchingOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VLRHeaderFieldMatchingOptions.swift; sourceTree = "<group>"; };
-		4FA056CB1AEEF33D0053A4DE /* VLRHeaderFieldMatchingOptionsSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VLRHeaderFieldMatchingOptionsSpec.swift; sourceTree = "<group>"; };
 		4FA9BB091AE5354700C94243 /* Velociraptor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Velociraptor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FA9BB0D1AE5354700C94243 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4FA9BB0E1AE5354700C94243 /* Velociraptor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Velociraptor.h; sourceTree = "<group>"; };
@@ -296,7 +293,6 @@
 			children = (
 				4FA9BB191AE5354700C94243 /* Supporting Files */,
 				4FEADA281AE87E4400CD344B /* NSURLSessionStubSpec.swift */,
-				4FA056CB1AEEF33D0053A4DE /* VLRHeaderFieldMatchingOptionsSpec.swift */,
 				4F11A2D21AFA4DBD0098A0F4 /* VLRHeaderFieldMatchingOptions */,
 			);
 			path = VelociraptorTests;
@@ -540,7 +536,6 @@
 				4F4C785F1AF9CF0300FD1708 /* NSURLSessionStubSpec.swift in Sources */,
 				4F11A2E71AFA54EB0098A0F4 /* OptionArbitrarilyTests.swift in Sources */,
 				4F11A2DE1AFA50960098A0F4 /* OptionPartiallyTenTests.swift in Sources */,
-				4F4C78601AF9CF0300FD1708 /* VLRHeaderFieldMatchingOptionsSpec.swift in Sources */,
 				4F11A2D81AFA4DCE0098A0F4 /* OptionTestCase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -574,7 +569,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4FA056CC1AEEF33D0053A4DE /* VLRHeaderFieldMatchingOptionsSpec.swift in Sources */,
 				4F11A2E31AFA53F90098A0F4 /* OptionStrictSubsetTests.swift in Sources */,
 				4FEADA291AE87E4400CD344B /* NSURLSessionStubSpec.swift in Sources */,
 				4F11A2E01AFA52390098A0F4 /* OptionPartiallyThreeTests.swift in Sources */,
