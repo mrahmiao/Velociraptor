@@ -24,6 +24,21 @@ CocoaPods 0.36 adds supports for Swift and embedded frameworks. You can install 
 $ gem install cocoapods
 ```
 
+To integrate Velociraptor into your Xcode project using CocoaPods, specify it in your `Podfile`:
+
+```ruby
+target :YourTestTarget do
+  use_frameworks!
+  pod 'Velociraptor'
+end
+```
+
+Then, run the following command:
+
+```bash
+$ pod install
+```
+
 ### Carthage
 
 [Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager for Cocoa application. You can use [Homebrew](http://brew.sh) to install Carthage.
@@ -32,6 +47,25 @@ $ gem install cocoapods
 $ brew update
 $ brew install carthage
 ```
+
+To integrate Velociraptor into your Xcode project using Carthage, please follow the instructions:
+
+1. Add Velociraptor to your `Cartfile.private`:
+
+```ruby
+github "mrahmiao/Velociraptor"
+```
+
+2. Run `carthage update`.
+
+3. From your `Carthage/Build/[platform]/` directory, add *Velociraptor.framework* to your test target's "Link Binary With Libraries" build phase:
+    ![](http://i.imgur.com/6bv3MpG.png)
+
+4. For your test target, create a new build phase of type "Copy Files":
+    ![](http://i.imgur.com/pFueiGY.png)
+
+5. Set the "Destination" to "Frameworks", then add both frameworks:
+    ![](http://i.imgur.com/s2Evmb3.png)
 
 ## Usage
 
@@ -59,6 +93,31 @@ class VelociraptorSpec: QuickSpec {
     describe(“Stubbing requests”) {
       // …
     }
+  }
+}
+```
+
+If you are using XCTest, use the following code:
+
+```swift
+import Foundation
+import XCTest
+import Velociraptor
+
+class VelociraptorTests: XCTestCase {
+  
+  override class func setUp() {
+    super.setUp()
+    Velociraptor.activate()
+  }
+  
+  override class func tearDown() {
+    Velociraptor.deactivate()
+    super.tearDown()
+  }
+
+  func testExample() {
+    // ...
   }
 }
 ```
