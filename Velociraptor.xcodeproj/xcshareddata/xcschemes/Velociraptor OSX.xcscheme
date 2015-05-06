@@ -22,10 +22,10 @@
          </BuildActionEntry>
          <BuildActionEntry
             buildForTesting = "YES"
-            buildForRunning = "YES"
+            buildForRunning = "NO"
             buildForProfiling = "NO"
             buildForArchiving = "NO"
-            buildForAnalyzing = "YES">
+            buildForAnalyzing = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "4F4C783B1AF9CE3A00FD1708"
@@ -51,6 +51,17 @@
                BlueprintName = "Velociraptor OSX Tests"
                ReferencedContainer = "container:Velociraptor.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "NSURLSessionStubsSpec">
+               </Test>
+               <Test
+                  Identifier = "VLRHeaderFieldMatchingOptionsSpec">
+               </Test>
+               <Test
+                  Identifier = "VLRHeaderFieldMatchingOptionsTests">
+               </Test>
+            </SkippedTests>
          </TestableReference>
       </Testables>
       <MacroExpansion>
