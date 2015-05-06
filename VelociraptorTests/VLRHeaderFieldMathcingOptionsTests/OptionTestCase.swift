@@ -18,7 +18,7 @@ class OptionTestCase: XCTestCase {
     }
   }
   
-  let minimumNumberOfMatchedHeaders = 3
+  let minimumNumberOfMatchedHeaders: UInt = 3
   
   let stubbedHeaders = [
     "Authroization": "13145253",
