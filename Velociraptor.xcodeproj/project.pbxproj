@@ -19,6 +19,8 @@
 		4F11A2E11AFA523A0098A0F4 /* OptionPartiallyThreeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F11A2DF1AFA52390098A0F4 /* OptionPartiallyThreeTests.swift */; };
 		4F11A2E31AFA53F90098A0F4 /* OptionStrictSubsetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F11A2E21AFA53F90098A0F4 /* OptionStrictSubsetTests.swift */; };
 		4F11A2E41AFA53F90098A0F4 /* OptionStrictSubsetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F11A2E21AFA53F90098A0F4 /* OptionStrictSubsetTests.swift */; };
+		4F11A2E61AFA54EB0098A0F4 /* OptionArbitrarilyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F11A2E51AFA54EB0098A0F4 /* OptionArbitrarilyTests.swift */; };
+		4F11A2E71AFA54EB0098A0F4 /* OptionArbitrarilyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F11A2E51AFA54EB0098A0F4 /* OptionArbitrarilyTests.swift */; };
 		4F1699711AE646DF003CE06C /* URLStubProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F1699701AE646DF003CE06C /* URLStubProtocol.swift */; };
 		4F23A7CB1AE7488200188691 /* MatchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F23A7CA1AE7488200188691 /* MatchResult.swift */; };
 		4F4C783D1AF9CE3A00FD1708 /* Velociraptor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F4C78321AF9CE3A00FD1708 /* Velociraptor.framework */; };
@@ -126,6 +128,7 @@
 		4F11A2DC1AFA50960098A0F4 /* OptionPartiallyTenTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OptionPartiallyTenTests.swift; path = VLRHeaderFieldMathcingOptionsTests/OptionPartiallyTenTests.swift; sourceTree = "<group>"; };
 		4F11A2DF1AFA52390098A0F4 /* OptionPartiallyThreeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OptionPartiallyThreeTests.swift; path = VLRHeaderFieldMathcingOptionsTests/OptionPartiallyThreeTests.swift; sourceTree = "<group>"; };
 		4F11A2E21AFA53F90098A0F4 /* OptionStrictSubsetTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OptionStrictSubsetTests.swift; path = VLRHeaderFieldMathcingOptionsTests/OptionStrictSubsetTests.swift; sourceTree = "<group>"; };
+		4F11A2E51AFA54EB0098A0F4 /* OptionArbitrarilyTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OptionArbitrarilyTests.swift; path = VLRHeaderFieldMathcingOptionsTests/OptionArbitrarilyTests.swift; sourceTree = "<group>"; };
 		4F1699701AE646DF003CE06C /* URLStubProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = URLStubProtocol.swift; path = URLProtocols/URLStubProtocol.swift; sourceTree = "<group>"; };
 		4F23A7CA1AE7488200188691 /* MatchResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchResult.swift; sourceTree = "<group>"; };
 		4F4C78321AF9CE3A00FD1708 /* Velociraptor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Velociraptor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -216,6 +219,7 @@
 				4F11A2DF1AFA52390098A0F4 /* OptionPartiallyThreeTests.swift */,
 				4F11A2DC1AFA50960098A0F4 /* OptionPartiallyTenTests.swift */,
 				4F11A2E21AFA53F90098A0F4 /* OptionStrictSubsetTests.swift */,
+				4F11A2E51AFA54EB0098A0F4 /* OptionArbitrarilyTests.swift */,
 				4F11A2D41AFA4DCE0098A0F4 /* OptionTestCase.swift */,
 			);
 			name = VLRHeaderFieldMatchingOptions;
@@ -534,6 +538,7 @@
 				4F11A2DB1AFA4EF40098A0F4 /* OptionPartiallyZeroTests.swift in Sources */,
 				4F11A2D61AFA4DCE0098A0F4 /* OptionExactlyTests.swift in Sources */,
 				4F4C785F1AF9CF0300FD1708 /* NSURLSessionStubSpec.swift in Sources */,
+				4F11A2E71AFA54EB0098A0F4 /* OptionArbitrarilyTests.swift in Sources */,
 				4F11A2DE1AFA50960098A0F4 /* OptionPartiallyTenTests.swift in Sources */,
 				4F4C78601AF9CF0300FD1708 /* VLRHeaderFieldMatchingOptionsSpec.swift in Sources */,
 				4F11A2D81AFA4DCE0098A0F4 /* OptionTestCase.swift in Sources */,
@@ -577,6 +582,7 @@
 				4FED8EE71AF70BA80015BB30 /* MatchResult.swift in Sources */,
 				4F11A2DA1AFA4EF40098A0F4 /* OptionPartiallyZeroTests.swift in Sources */,
 				4FED8EE41AF70B840015BB30 /* VLRHTTPMethod.swift in Sources */,
+				4F11A2E61AFA54EB0098A0F4 /* OptionArbitrarilyTests.swift in Sources */,
 				4FED8EDE1AF70ABC0015BB30 /* VLRHeaderFieldMatchingOptions.swift in Sources */,
 				4F11A2D51AFA4DCE0098A0F4 /* OptionExactlyTests.swift in Sources */,
 				4F11A2D71AFA4DCE0098A0F4 /* OptionTestCase.swift in Sources */,
