@@ -43,6 +43,53 @@ class SimpleRequestsWithDefaultSessionConfigurationTests: NSURLSessionStubsTestC
     }
   }
   
+  func testStubNSURLAndReceiveDefaultResponse() {
+    let expectation = expectationWithDescription("NSURL")
+    
+    Velociraptor.request(URL)
+    
+    let task = session.dataTaskWithURL(URL) { (data, res, error) in
+      expectation.fulfill()
+      
+      XCTAssertEqual(data.length, 0, "The length of data should equal to 0, got \(data.length)")
+      XCTAssertNotNil(res, "Default response should not be nil")
+      XCTAssertNil(error, "Should not receive an error")
+      
+      let response = res as! NSHTTPURLResponse
+      
+      XCTAssertEqual(response.statusCode, 200, "Default status code should equal to 200, got \(response.statusCode)")
+    }
+    
+    task.resume()
+    self.waitForExpectationsWithTimeout(1) { error in
+      if let error = error {
+        XCTFail(error.localizedDescription)
+      }
+    }
+  }
   
-  
+  func testStubNSURLRequestAndReceiveDefaultResponse() {
+    let expectation = expectationWithDescription("NSURLRequest")
+    
+    Velociraptor.request(request)
+    
+    let task = session.dataTaskWithRequest(request) { (data, res, error) in
+      expectation.fulfill()
+      
+      XCTAssertEqual(data.length, 0, "The length of data should equal to 0, got \(data.length)")
+      XCTAssertNotNil(res, "Default response should not be nil")
+      XCTAssertNil(error, "Should not receive an error")
+      
+      let response = res as! NSHTTPURLResponse
+      
+      XCTAssertEqual(response.statusCode, 200, "Default status code should equal to 200, got \(response.statusCode)")
+    }
+    
+    task.resume()
+    self.waitForExpectationsWithTimeout(1) { error in
+      if let error = error {
+        XCTFail(error.localizedDescription)
+      }
+    }
+  }
 }
