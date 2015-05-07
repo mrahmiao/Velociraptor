@@ -37,6 +37,14 @@
                BlueprintName = "Velociraptor iOS Tests"
                ReferencedContainer = "container:Velociraptor.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "NSURLSessionStubsSpec">
+               </Test>
+               <Test
+                  Identifier = "VLRHeaderFieldMatchingOptionsSpec">
+               </Test>
+            </SkippedTests>
          </TestableReference>
       </Testables>
       <MacroExpansion>

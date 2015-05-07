@@ -1,8 +1,13 @@
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+
 # Velociraptor
 
 Velociraptor is a network stubbing framework written in pure Swift for iOS and OS X.
 
 ## Requirements
+
+- iOS 8.1+ / Mac OS X 10.10+
+- Xcode 6.3
 
 ## Communication
 
