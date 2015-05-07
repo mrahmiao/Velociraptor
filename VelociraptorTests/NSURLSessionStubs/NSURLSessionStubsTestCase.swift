@@ -43,9 +43,6 @@ class NSURLSessionStubsTestCase: XCTestCase {
   
   override func tearDown() {
     config = nil
+    super.tearDown()
   }
-  
-
-  
-  
 }
