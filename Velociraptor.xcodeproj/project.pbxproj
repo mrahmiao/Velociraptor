@@ -62,6 +62,8 @@
 		4F841EEA1AF1C21100022AAD /* NSMutableURLRequest+Swizzling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F841EE91AF1C21100022AAD /* NSMutableURLRequest+Swizzling.swift */; };
 		4F97C43C1AFB49C300CDBA17 /* RequestHTTPBodyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F97C43B1AFB49C300CDBA17 /* RequestHTTPBodyTests.swift */; };
 		4F97C43D1AFB49C300CDBA17 /* RequestHTTPBodyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F97C43B1AFB49C300CDBA17 /* RequestHTTPBodyTests.swift */; };
+		4F97C43F1AFB4ABC00CDBA17 /* ResponseStubbingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F97C43E1AFB4ABC00CDBA17 /* ResponseStubbingTests.swift */; };
+		4F97C4401AFB4ABC00CDBA17 /* ResponseStubbingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F97C43E1AFB4ABC00CDBA17 /* ResponseStubbingTests.swift */; };
 		4FA056C91AEE11D90053A4DE /* VLRHeaderFieldMatchingOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA056C81AEE11D90053A4DE /* VLRHeaderFieldMatchingOptions.swift */; };
 		4FA9BB0F1AE5354700C94243 /* Velociraptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 4FA9BB0E1AE5354700C94243 /* Velociraptor.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4FA9BB151AE5354700C94243 /* Velociraptor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FA9BB091AE5354700C94243 /* Velociraptor.framework */; };
@@ -152,6 +154,7 @@
 		4F4C78621AF9CF1900FD1708 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/Mac/Quick.framework; sourceTree = "<group>"; };
 		4F841EE91AF1C21100022AAD /* NSMutableURLRequest+Swizzling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSMutableURLRequest+Swizzling.swift"; sourceTree = "<group>"; };
 		4F97C43B1AFB49C300CDBA17 /* RequestHTTPBodyTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RequestHTTPBodyTests.swift; path = NSURLSessionStubs/RequestHTTPBodyTests.swift; sourceTree = "<group>"; };
+		4F97C43E1AFB4ABC00CDBA17 /* ResponseStubbingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ResponseStubbingTests.swift; path = NSURLSessionStubs/ResponseStubbingTests.swift; sourceTree = "<group>"; };
 		4FA056C81AEE11D90053A4DE /* VLRHeaderFieldMatchingOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VLRHeaderFieldMatchingOptions.swift; sourceTree = "<group>"; };
 		4FA9BB091AE5354700C94243 /* Velociraptor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Velociraptor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FA9BB0D1AE5354700C94243 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -249,6 +252,7 @@
 				4F11A2F41AFB0EF90098A0F4 /* RequestHTTPMethodTests.swift */,
 				4F11A2F71AFB10C90098A0F4 /* RequesetHeaderFieldTests.swift */,
 				4F97C43B1AFB49C300CDBA17 /* RequestHTTPBodyTests.swift */,
+				4F97C43E1AFB4ABC00CDBA17 /* ResponseStubbingTests.swift */,
 			);
 			name = NSURLSessionStubs;
 			sourceTree = "<group>";
@@ -566,6 +570,7 @@
 				4F11A2E41AFA53F90098A0F4 /* OptionStrictSubsetTests.swift in Sources */,
 				4F4C785E1AF9CF0300FD1708 /* VLRHeaderFieldMatchingOptions.swift in Sources */,
 				4F11A2EB1AFA5D450098A0F4 /* NSURLSessionStubsTestCase.swift in Sources */,
+				4F97C4401AFB4ABC00CDBA17 /* ResponseStubbingTests.swift in Sources */,
 				4F11A2F31AFB0E660098A0F4 /* SimpleRequestsWithEphemeralSessionConfigurationTests.swift in Sources */,
 				4F11A2DB1AFA4EF40098A0F4 /* OptionPartiallyZeroTests.swift in Sources */,
 				4F97C43D1AFB49C300CDBA17 /* RequestHTTPBodyTests.swift in Sources */,
@@ -613,6 +618,7 @@
 				4F11A2E01AFA52390098A0F4 /* OptionPartiallyThreeTests.swift in Sources */,
 				4F11A2DD1AFA50960098A0F4 /* OptionPartiallyTenTests.swift in Sources */,
 				4FED8EE71AF70BA80015BB30 /* MatchResult.swift in Sources */,
+				4F97C43F1AFB4ABC00CDBA17 /* ResponseStubbingTests.swift in Sources */,
 				4F11A2DA1AFA4EF40098A0F4 /* OptionPartiallyZeroTests.swift in Sources */,
 				4F11A2F81AFB10C90098A0F4 /* RequesetHeaderFieldTests.swift in Sources */,
 				4F11A2ED1AFA606A0098A0F4 /* SimpleRequestsWithDefaultSessionConfigurationTests.swift in Sources */,
