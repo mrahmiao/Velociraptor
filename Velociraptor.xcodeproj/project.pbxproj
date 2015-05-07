@@ -54,7 +54,6 @@
 		4F4C785C1AF9CEE500FD1708 /* VLRStubbedRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF28D771AE8A6B0008CC328 /* VLRStubbedRequest.swift */; };
 		4F4C785D1AF9CEE500FD1708 /* VLRStubbedResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF28D7B1AE8C714008CC328 /* VLRStubbedResponse.swift */; };
 		4F4C785E1AF9CF0300FD1708 /* VLRHeaderFieldMatchingOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA056C81AEE11D90053A4DE /* VLRHeaderFieldMatchingOptions.swift */; };
-		4F4C785F1AF9CF0300FD1708 /* NSURLSessionStubSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEADA281AE87E4400CD344B /* NSURLSessionStubSpec.swift */; };
 		4F4C78631AF9CF1900FD1708 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F4C78611AF9CF1900FD1708 /* Nimble.framework */; };
 		4F4C78641AF9CF1900FD1708 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F4C78621AF9CF1900FD1708 /* Quick.framework */; };
 		4F4C78661AF9CF2B00FD1708 /* Nimble.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4F4C78611AF9CF1900FD1708 /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -77,7 +76,6 @@
 		4FEADA241AE87CFD00CD344B /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FEADA221AE87CFD00CD344B /* Nimble.framework */; };
 		4FEADA261AE87D3000CD344B /* Quick.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4FEADA211AE87CFD00CD344B /* Quick.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4FEADA271AE87D3000CD344B /* Nimble.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4FEADA221AE87CFD00CD344B /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		4FEADA291AE87E4400CD344B /* NSURLSessionStubSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEADA281AE87E4400CD344B /* NSURLSessionStubSpec.swift */; };
 		4FED8ED31AF702760015BB30 /* HTTPMethodMatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FED8ED21AF702760015BB30 /* HTTPMethodMatcher.swift */; };
 		4FED8EDE1AF70ABC0015BB30 /* VLRHeaderFieldMatchingOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA056C81AEE11D90053A4DE /* VLRHeaderFieldMatchingOptions.swift */; };
 		4FED8EE41AF70B840015BB30 /* VLRHTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF28D751AE89814008CC328 /* VLRHTTPMethod.swift */; };
@@ -170,7 +168,6 @@
 		4FEADA1E1AE7CB8C00CD344B /* NSURLSessionConfiguration+Swizzling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSURLSessionConfiguration+Swizzling.swift"; sourceTree = "<group>"; };
 		4FEADA211AE87CFD00CD344B /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/iOS/Quick.framework; sourceTree = "<group>"; };
 		4FEADA221AE87CFD00CD344B /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/iOS/Nimble.framework; sourceTree = "<group>"; };
-		4FEADA281AE87E4400CD344B /* NSURLSessionStubSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSURLSessionStubSpec.swift; sourceTree = "<group>"; };
 		4FED8ED21AF702760015BB30 /* HTTPMethodMatcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HTTPMethodMatcher.swift; path = RequestMatcher/HTTPMethodMatcher.swift; sourceTree = "<group>"; };
 		4FED8EEF1AF7125C0015BB30 /* URLMatcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = URLMatcher.swift; path = RequestMatcher/URLMatcher.swift; sourceTree = "<group>"; };
 		4FED8EF11AF7134D0015BB30 /* HeaderFieldMatcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HeaderFieldMatcher.swift; path = RequestMatcher/HeaderFieldMatcher.swift; sourceTree = "<group>"; };
@@ -331,7 +328,6 @@
 			isa = PBXGroup;
 			children = (
 				4FA9BB191AE5354700C94243 /* Supporting Files */,
-				4FEADA281AE87E4400CD344B /* NSURLSessionStubSpec.swift */,
 				4F11A2E81AFA55CA0098A0F4 /* NSURLSessionStubs */,
 				4F11A2D21AFA4DBD0098A0F4 /* VLRHeaderFieldMatchingOptions */,
 			);
@@ -581,7 +577,6 @@
 				4F97C43D1AFB49C300CDBA17 /* RequestHTTPBodyTests.swift in Sources */,
 				4F11A2F61AFB0EF90098A0F4 /* RequestHTTPMethodTests.swift in Sources */,
 				4F11A2D61AFA4DCE0098A0F4 /* OptionExactlyTests.swift in Sources */,
-				4F4C785F1AF9CF0300FD1708 /* NSURLSessionStubSpec.swift in Sources */,
 				4F11A2E71AFA54EB0098A0F4 /* OptionArbitrarilyTests.swift in Sources */,
 				4F11A2DE1AFA50960098A0F4 /* OptionPartiallyTenTests.swift in Sources */,
 				4F11A2D81AFA4DCE0098A0F4 /* OptionTestCase.swift in Sources */,
@@ -620,7 +615,6 @@
 				4F11A2F51AFB0EF90098A0F4 /* RequestHTTPMethodTests.swift in Sources */,
 				4F11A2E31AFA53F90098A0F4 /* OptionStrictSubsetTests.swift in Sources */,
 				4F97C4421AFB526600CDBA17 /* ConvenienceMethodTests.swift in Sources */,
-				4FEADA291AE87E4400CD344B /* NSURLSessionStubSpec.swift in Sources */,
 				4F11A2E01AFA52390098A0F4 /* OptionPartiallyThreeTests.swift in Sources */,
 				4F11A2DD1AFA50960098A0F4 /* OptionPartiallyTenTests.swift in Sources */,
 				4FED8EE71AF70BA80015BB30 /* MatchResult.swift in Sources */,
