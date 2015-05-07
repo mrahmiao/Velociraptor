@@ -25,6 +25,8 @@
 		4F11A2EB1AFA5D450098A0F4 /* NSURLSessionStubsTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F11A2E91AFA5D450098A0F4 /* NSURLSessionStubsTestCase.swift */; };
 		4F11A2ED1AFA606A0098A0F4 /* SimpleRequestsWithDefaultSessionConfigurationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F11A2EC1AFA606A0098A0F4 /* SimpleRequestsWithDefaultSessionConfigurationTests.swift */; };
 		4F11A2EE1AFA606A0098A0F4 /* SimpleRequestsWithDefaultSessionConfigurationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F11A2EC1AFA606A0098A0F4 /* SimpleRequestsWithDefaultSessionConfigurationTests.swift */; };
+		4F11A2F21AFB0E660098A0F4 /* SimpleRequestsWithEphemeralSessionConfigurationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F11A2F11AFB0E660098A0F4 /* SimpleRequestsWithEphemeralSessionConfigurationTests.swift */; };
+		4F11A2F31AFB0E660098A0F4 /* SimpleRequestsWithEphemeralSessionConfigurationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F11A2F11AFB0E660098A0F4 /* SimpleRequestsWithEphemeralSessionConfigurationTests.swift */; };
 		4F1699711AE646DF003CE06C /* URLStubProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F1699701AE646DF003CE06C /* URLStubProtocol.swift */; };
 		4F23A7CB1AE7488200188691 /* MatchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F23A7CA1AE7488200188691 /* MatchResult.swift */; };
 		4F4C783D1AF9CE3A00FD1708 /* Velociraptor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F4C78321AF9CE3A00FD1708 /* Velociraptor.framework */; };
@@ -133,6 +135,7 @@
 		4F11A2E51AFA54EB0098A0F4 /* OptionArbitrarilyTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OptionArbitrarilyTests.swift; path = VLRHeaderFieldMathcingOptionsTests/OptionArbitrarilyTests.swift; sourceTree = "<group>"; };
 		4F11A2E91AFA5D450098A0F4 /* NSURLSessionStubsTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NSURLSessionStubsTestCase.swift; path = NSURLSessionStubs/NSURLSessionStubsTestCase.swift; sourceTree = "<group>"; };
 		4F11A2EC1AFA606A0098A0F4 /* SimpleRequestsWithDefaultSessionConfigurationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SimpleRequestsWithDefaultSessionConfigurationTests.swift; path = NSURLSessionStubs/SimpleRequestsWithDefaultSessionConfigurationTests.swift; sourceTree = "<group>"; };
+		4F11A2F11AFB0E660098A0F4 /* SimpleRequestsWithEphemeralSessionConfigurationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SimpleRequestsWithEphemeralSessionConfigurationTests.swift; path = NSURLSessionStubs/SimpleRequestsWithEphemeralSessionConfigurationTests.swift; sourceTree = "<group>"; };
 		4F1699701AE646DF003CE06C /* URLStubProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = URLStubProtocol.swift; path = URLProtocols/URLStubProtocol.swift; sourceTree = "<group>"; };
 		4F23A7CA1AE7488200188691 /* MatchResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchResult.swift; sourceTree = "<group>"; };
 		4F4C78321AF9CE3A00FD1708 /* Velociraptor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Velociraptor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -233,6 +236,7 @@
 			children = (
 				4F11A2E91AFA5D450098A0F4 /* NSURLSessionStubsTestCase.swift */,
 				4F11A2EC1AFA606A0098A0F4 /* SimpleRequestsWithDefaultSessionConfigurationTests.swift */,
+				4F11A2F11AFB0E660098A0F4 /* SimpleRequestsWithEphemeralSessionConfigurationTests.swift */,
 			);
 			name = NSURLSessionStubs;
 			sourceTree = "<group>";
@@ -549,6 +553,7 @@
 				4F11A2E41AFA53F90098A0F4 /* OptionStrictSubsetTests.swift in Sources */,
 				4F4C785E1AF9CF0300FD1708 /* VLRHeaderFieldMatchingOptions.swift in Sources */,
 				4F11A2EB1AFA5D450098A0F4 /* NSURLSessionStubsTestCase.swift in Sources */,
+				4F11A2F31AFB0E660098A0F4 /* SimpleRequestsWithEphemeralSessionConfigurationTests.swift in Sources */,
 				4F11A2DB1AFA4EF40098A0F4 /* OptionPartiallyZeroTests.swift in Sources */,
 				4F11A2D61AFA4DCE0098A0F4 /* OptionExactlyTests.swift in Sources */,
 				4F4C785F1AF9CF0300FD1708 /* NSURLSessionStubSpec.swift in Sources */,
@@ -600,6 +605,7 @@
 				4F11A2D51AFA4DCE0098A0F4 /* OptionExactlyTests.swift in Sources */,
 				4F11A2D71AFA4DCE0098A0F4 /* OptionTestCase.swift in Sources */,
 				4F11A2EA1AFA5D450098A0F4 /* NSURLSessionStubsTestCase.swift in Sources */,
+				4F11A2F21AFB0E660098A0F4 /* SimpleRequestsWithEphemeralSessionConfigurationTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
