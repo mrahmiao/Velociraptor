@@ -33,6 +33,8 @@
 		4F11A2F91AFB10C90098A0F4 /* RequesetHeaderFieldTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F11A2F71AFB10C90098A0F4 /* RequesetHeaderFieldTests.swift */; };
 		4F1699711AE646DF003CE06C /* URLStubProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F1699701AE646DF003CE06C /* URLStubProtocol.swift */; };
 		4F23A7CB1AE7488200188691 /* MatchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F23A7CA1AE7488200188691 /* MatchResult.swift */; };
+		4F3B000E1B023D8B005B1A30 /* content.json in Resources */ = {isa = PBXBuildFile; fileRef = 4F3B000D1B023D8B005B1A30 /* content.json */; };
+		4F3B000F1B023D8B005B1A30 /* content.json in Resources */ = {isa = PBXBuildFile; fileRef = 4F3B000D1B023D8B005B1A30 /* content.json */; };
 		4F4C783D1AF9CE3A00FD1708 /* Velociraptor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F4C78321AF9CE3A00FD1708 /* Velociraptor.framework */; };
 		4F4C784B1AF9CE9000FD1708 /* Velociraptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 4FA9BB0E1AE5354700C94243 /* Velociraptor.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4F4C784C1AF9CEE500FD1708 /* NSMutableURLRequest+Swizzling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F841EE91AF1C21100022AAD /* NSMutableURLRequest+Swizzling.swift */; };
@@ -113,6 +115,7 @@
 		4F11A2F71AFB10C90098A0F4 /* RequesetHeaderFieldTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RequesetHeaderFieldTests.swift; path = NSURLSessionStubs/RequesetHeaderFieldTests.swift; sourceTree = "<group>"; };
 		4F1699701AE646DF003CE06C /* URLStubProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = URLStubProtocol.swift; path = URLProtocols/URLStubProtocol.swift; sourceTree = "<group>"; };
 		4F23A7CA1AE7488200188691 /* MatchResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchResult.swift; sourceTree = "<group>"; };
+		4F3B000D1B023D8B005B1A30 /* content.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = content.json; sourceTree = "<group>"; };
 		4F4C78321AF9CE3A00FD1708 /* Velociraptor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Velociraptor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F4C783C1AF9CE3A00FD1708 /* Velociraptor OSX Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Velociraptor OSX Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F4C78611AF9CF1900FD1708 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/Mac/Nimble.framework; sourceTree = "<group>"; };
@@ -299,6 +302,7 @@
 			isa = PBXGroup;
 			children = (
 				4FA9BB1A1AE5354700C94243 /* Info.plist */,
+				4F3B000D1B023D8B005B1A30 /* content.json */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -474,6 +478,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F3B000F1B023D8B005B1A30 /* content.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -488,6 +493,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F3B000E1B023D8B005B1A30 /* content.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
