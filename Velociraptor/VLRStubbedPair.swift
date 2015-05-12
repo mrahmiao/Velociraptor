@@ -256,6 +256,29 @@ extension VLRStubbedPair {
     
     return self
   }
+  
+  /**
+    Specify the content of the file in current bundle as the stubbed response data.
+  
+    :param: filename The name of the file.
+    :param: contentType The value of "Content-Type" in HTTP header fields.
+  
+    :returns: An object you used to specify more stubbed information.
+  */
+  public func responseContentsOfFile(filename: String, contentType: String? = nil) -> Self {
+    response = response ?? defaultResponseWithURL(request.URL)
+    
+    if let contentType = contentType {
+      responseHeaderValue(contentType, forHTTPHeaderField: "Content-Type")
+    }
+    
+    let bundle = NSBundle(forClass: VLRStubbedPair.self)
+    if let URL = bundle.URLForResource(filename, withExtension: nil), data = NSData(contentsOfURL: URL) {
+      responseBodyData(data)
+    }
+    
+    return self
+  }
 }
 
 // MARK: - Private helpers

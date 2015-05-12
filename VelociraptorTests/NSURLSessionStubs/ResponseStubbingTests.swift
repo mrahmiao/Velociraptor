@@ -232,4 +232,30 @@ class ResponseStubbingTests: NSURLSessionStubsTestCase {
       }
     }
   }
+  
+  func testStubbingResponseBodyWithFileInTestBundle() {
+    let expectation = expectationWithDescription("TestBundle")
+
+    let bundle = NSBundle(forClass: ResponseStubbingTests.self)
+    let contentURL = bundle.URLForResource("content", withExtension: "json")!
+    let content = NSData(contentsOfURL: contentURL)!
+    
+    Velociraptor.request(URL)?.responseContentsOfFile("content.json", contentType: "application/json")
+    
+    let task = session.dataTaskWithURL(URL) { (data, res, err) in
+      expectation.fulfill()
+      let receivedRes = res as! NSHTTPURLResponse
+      
+      XCTAssertEqual(data, content, "Data should be equal")
+      XCTAssertEqual((receivedRes.allHeaderFields["Content-Type"] as! String), "application/json", "Content-Type header value should be correct")
+    }
+    
+    task.resume()
+    self.waitForExpectationsWithTimeout(1) { error in
+      if let error = error {
+        XCTFail(error.localizedDescription)
+      }
+    }
+  }
+
 }
