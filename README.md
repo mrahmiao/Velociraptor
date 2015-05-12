@@ -282,7 +282,8 @@ let data = "Hello World".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConve
 Velociraptor.request(URL)?.responseBodyData(data)
 ```
 
-Or use JSON object:
+#### Stubbing JSON Body Data:
+You can encode ordinary objects into JSON and use them as the body data: 
 
 ```swift
 let JSONObject: AnyObject = [
@@ -291,10 +292,43 @@ let JSONObject: AnyObject = [
   "Array": [5, 4, 3]
 ]
 
-Velociraptor.request(URL)?.responseBodyData(JSONObject)
+Velociraptor.request(URL)?.responseJSONObject(JSONObject)
+```
+
+Note that only objects that satisfied the conditions listed in the documentation
+of `NSJSONSerialization` could be converted to JSON. Otherwise, an exception will be raised.
+
+You can also stubbed the JSON data rather than JSON object, and the following two code snippets
+are equivalent:
+
+```swift
+let JSONObject: AnyObject = [
+  "Number": 5,
+  "Bool": false,
+  "Array": [5, 4, 3]
+]
+
+let JSONData = NSJSONSerialization.dataWithJSONObject(object, options: NSJSONWritingOptions.allZeros, error: nil)!
+
+Velociraptor.request(URL)?.responseJSONData(JSONData)
+
+// Equivalent to
+Velociraptor.request(URL)?
+    .responseBodyData(JSONData)
+    .responseHeaderValue(value: "application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
 ```
 
 When stubbing JSON data, *Content-Type* will be set to *application/json; charset=utf-8*
+
+#### Stubbing Body Data with File
+
+If you have files that contains data you want to use as the HTTP body data, just use them:
+
+```swift
+Velociraptor.request(URL)?.responseContentsOfFile("content.json", contentType: "application/json")
+```
+
+The file should be located in your test bundle.
 
 #### Put Them Together
 

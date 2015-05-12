@@ -173,8 +173,8 @@ class ResponseStubbingTests: NSURLSessionStubsTestCase {
     }
   }
   
-  func testStubbingResponseHTTPBodyJSONData() {
-    let expectation = expectationWithDescription("JSON data")
+  func testStubbingResponseHTTPBodyJSONObject() {
+    let expectation = expectationWithDescription("JSON object")
     let JSONObject: AnyObject = [
       "Number": 5,
       "Bool": false,
@@ -183,7 +183,7 @@ class ResponseStubbingTests: NSURLSessionStubsTestCase {
     
     let JSONData = NSJSONSerialization.dataWithJSONObject(JSONObject, options: NSJSONWritingOptions.allZeros, error: nil)
     
-    Velociraptor.request(URL)?.responseJSONData(JSONObject)
+    Velociraptor.request(URL)?.responseJSONObject(JSONObject)
     
     let task = session.dataTaskWithURL(URL) { (data, res, err) in
       expectation.fulfill()
@@ -202,4 +202,60 @@ class ResponseStubbingTests: NSURLSessionStubsTestCase {
       }
     }
   }
+  
+  func testStubbingResponseBodyWithJSONData() {
+    let expectation = expectationWithDescription("JSON Data")
+    let JSONObject: AnyObject = [
+      "Number": 5,
+      "Bool": false,
+      "Array": [5, 4, 3]
+    ]
+    
+    let JSONData = NSJSONSerialization.dataWithJSONObject(JSONObject, options: NSJSONWritingOptions.allZeros, error: nil)!
+    
+    Velociraptor.request(URL)?.responseJSONData(JSONData)
+    
+    let task = session.dataTaskWithURL(URL) { (data, res, err) in
+      expectation.fulfill()
+      let receivedRes = res as! NSHTTPURLResponse
+      
+      XCTAssertTrue(data == JSONData, "Data should be equal")
+      XCTAssertEqual(receivedRes.allHeaderFields.count, 2, "The number of header fields should be 2")
+      XCTAssertEqual((receivedRes.allHeaderFields["Content-Type"] as! String), "application/json; charset=utf-8", "Content-Type header value should be correct")
+      XCTAssertEqual((receivedRes.allHeaderFields["Content-Length"] as! String), String(JSONData.length), "Content-Length header value should be correct")
+    }
+    
+    task.resume()
+    self.waitForExpectationsWithTimeout(1) { error in
+      if let error = error {
+        XCTFail(error.localizedDescription)
+      }
+    }
+  }
+  
+  func testStubbingResponseBodyWithFileInTestBundle() {
+    let expectation = expectationWithDescription("TestBundle")
+
+    let bundle = NSBundle(forClass: ResponseStubbingTests.self)
+    let contentURL = bundle.URLForResource("content", withExtension: "json")!
+    let content = NSData(contentsOfURL: contentURL)!
+    
+    Velociraptor.request(URL)?.responseContentsOfFile("content.json", contentType: "application/json")
+    
+    let task = session.dataTaskWithURL(URL) { (data, res, err) in
+      expectation.fulfill()
+      let receivedRes = res as! NSHTTPURLResponse
+      
+      XCTAssertEqual(data, content, "Data should be equal")
+      XCTAssertEqual((receivedRes.allHeaderFields["Content-Type"] as! String), "application/json", "Content-Type header value should be correct")
+    }
+    
+    task.resume()
+    self.waitForExpectationsWithTimeout(1) { error in
+      if let error = error {
+        XCTFail(error.localizedDescription)
+      }
+    }
+  }
+
 }
