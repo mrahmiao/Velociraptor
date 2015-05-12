@@ -215,21 +215,44 @@ extension VLRStubbedPair {
   }
   
   /**
-    Specify the JSON data as the stubbed response data. And the
-    `Content-Type` of the response header will be set to
+    Specify the an object as the stubbed response data. The object would be
+    decoded to JSON data. The `Content-Type` of the response header will be set to
     `application/json; charset=utf-8`.
   
-    :param: data The JSON object that will be stubbed as the response data.
+    Note that only objects that satisfied the conditions listed in the documentation
+    of `NSJSONSerialization` could be converted to JSON. Otherwise, exception will be
+    raised.
+  
+    :param: object The JSON object that will be stubbed as the response data.
 
     :returns: An object you used to specify more stubbed information.
   */
-  public func responseJSONData(data: AnyObject) -> Self {
+  public func responseJSONObject(object: AnyObject) -> Self {
     response = response ?? defaultResponseWithURL(request.URL)
     
-    if let JSONData = NSJSONSerialization.dataWithJSONObject(data, options: NSJSONWritingOptions.allZeros, error: nil) {
+    if let JSONData = NSJSONSerialization.dataWithJSONObject(object, options: NSJSONWritingOptions.allZeros, error: nil) {
       responseHeaderValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
       responseBodyData(JSONData)
     }
+    
+    return self
+  }
+  
+  /**
+    Specify the a JSON data object as the stubbed response data. This method is
+    equivalent to 
+  
+    `responseBodyData(JSONData).responseHeaderValue(value: "application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")`
+  
+    :param: data The JSON data that will be stubbed as the response data.
+  
+    :returns: An object you used to specify more stubbed information.
+  */
+  public func responseJSONData(data: NSData) -> Self {
+    response = response ?? defaultResponseWithURL(request.URL)
+    
+    responseHeaderValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+    responseBodyData(data)
     
     return self
   }
