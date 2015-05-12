@@ -220,8 +220,8 @@ extension VLRStubbedPair {
     `application/json; charset=utf-8`.
   
     Note that only objects that satisfied the conditions listed in the documentation
-    of `NSJSONSerialization` could be converted to JSON. Otherwise, exception will be
-    raised.
+    of `NSJSONSerialization` could be converted to JSON. Otherwise, an exception will
+    be raised.
   
     :param: object The JSON object that will be stubbed as the response data.
 

@@ -291,7 +291,30 @@ let JSONObject: AnyObject = [
   "Array": [5, 4, 3]
 ]
 
-Velociraptor.request(URL)?.responseBodyData(JSONObject)
+Velociraptor.request(URL)?.responseJSONObject(JSONObject)
+```
+
+Note that only objects that satisfied the conditions listed in the documentation
+of `NSJSONSerialization` could be converted to JSON. Otherwise, an exception will be raised.
+
+You can also stubbed the JSON data rather than JSON object, and the following two code snippets
+are equivalent:
+
+```swift
+let JSONObject: AnyObject = [
+  "Number": 5,
+  "Bool": false,
+  "Array": [5, 4, 3]
+]
+
+let JSONData = NSJSONSerialization.dataWithJSONObject(object, options: NSJSONWritingOptions.allZeros, error: nil)!
+
+Velociraptor.request(URL)?.responseJSONData(JSONData)
+
+// Equivalent to
+Velociraptor.request(URL)?
+    .responseBodyData(JSONData)
+    .responseHeaderValue(value: "application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
 ```
 
 When stubbing JSON data, *Content-Type* will be set to *application/json; charset=utf-8*
